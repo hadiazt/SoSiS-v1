@@ -1,13 +1,13 @@
-// =============== Port ===============
-const express = require('express');
-const app = express();
-let port = process.env.PORT || 300;
+// // =============== Port ===============
+// const express = require('express');
+// const app = express();
+// let port = process.env.PORT || 300;
 
-app.get('/', (req, res) => res.send('Bot Is Working Well!'));
+// app.get('/', (req, res) => res.send('Bot Is Working Well!'));
 
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
+// app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
 
-// =============== Bot ===============
+// // =============== Bot ===============
 
 const Discord = require("discord.js")
 const ytdl = require("ytdl-core")
