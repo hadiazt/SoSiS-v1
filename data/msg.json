@@ -1,0 +1,30 @@
+{
+    "simp": {
+        "title": "😛 درصد سیمپ بودن شما % ",
+        "color": "#AADC24",
+        "thumbnails": [
+            "https://i.pinimg.com/564x/91/9c/7f/919c7f9880fdc55ee09809e1a639d52e.jpg",
+            "https://i.pinimg.com/236x/cf/35/c9/cf35c93b456e357b3335e6c1684a2f28.jpg",
+            "https://i.pinimg.com/236x/ed/fc/59/edfc593693b41073e0f94b1cea272d6c.jpg"
+        ]
+    },
+    "jazab": {
+        "title": "😎 درصد جذاب بودن شما % ",
+        "color": "#24DCB2"
+    },
+    "love": {
+        "title": "عشق سنج",
+        "color": "#DC2424",
+        "thumbnails": [
+            "https://cdn.pixabay.com/photo/2018/08/03/04/36/couple-3581038_960_720.jpg",
+            "https://i.pinimg.com/236x/f7/b6/84/f7b68476e82e107ce7880b4940a13b13.jpg",
+            "https://i.pinimg.com/236x/5c/a9/0a/5ca90ad9c6fa8f8bd69653bb88d78f53.jpg",
+            "https://i.pinimg.com/236x/9c/ae/fd/9caefd6e197822e120a3a057c71b1820.jpg",
+            "https://i.pinimg.com/236x/96/45/79/9645796b4abfecd2ed77f612640a2396.jpg"
+        ],
+        "errors":{
+            "mention":"لطفا کاربری رو منشن کنید",
+            "yourself":"تنها با منشن کاربر دیگر میتوانید از این دستور استفاده کنید"
+        }
+    }
+}
