@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 require("./ExtendedMessage");
 const client = new Discord.Client({ allowedMentions: { repliedUser: true } });
+const disbut = require('discord-buttons');
+disbut(client);
 
 const { Database } = require('beta.db')
 
@@ -50,15 +52,49 @@ client.on("guildDelete", guild => {
 
 client.on("message", (message) => {
 
+
+
+    if (message.content === `${config.prefix}help`) {
+
+        const helpmsg = new Discord.MessageEmbed()
+            .setAuthor(`${message.author.username} : درخواست شده توسط`, `${message.author.displayAvatarURL({dynamic : true})}`)
+            .setThumbnail(client.user.displayAvatarURL({ size: 2048 }))
+            .setColor('GREEN')
+            .setDescription(`**--------------- Public ---------------**\n\`\`\`1)invite\n2)stats\n3)report\n4)support\n5)simp\n6)jazab\n7)love [mention]\n8)truth\n9)dare\`\`\`\n**--------- Bot Admin Only ----------**\n\`\`\`1)add-dare\n2)add-truth\`\`\`\n**--------------- Owner ---------------**\n\`\`\`1)add-trusted\`\`\``)
+    
+            message.inlineReply(helpMsg)
+    }
+    
     // ------------------------- INVITE -------------------------
     if (message.content === `${config.PREFIX}invite`) {
+
         var invmsg = new Discord.MessageEmbed()
             .setTitle(data.inv.title)
-            .setURL(data.inv.link)
             .setThumbnail(client.user.displayAvatarURL({ size: 2048 }))
 
-        message.inlineReply(invmsg)
+        let invbtn = new disbut.MessageButton()
+            .setStyle('url')
+            .setURL(data.inv.link)
+            .setLabel('CLICK ME');
+
+        message.channel.send(invmsg, invbtn)
         client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'invite triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
+    }
+
+    // ------------------------- SUPPORT -------------------------
+    if (message.content === `${config.PREFIX}support`) {
+
+        var supmsg = new Discord.MessageEmbed()
+            .setTitle(data.sup.title)
+            .setThumbnail(client.user.displayAvatarURL({ size: 2048 }))
+
+        let supbtn = new disbut.MessageButton()
+            .setStyle('url')
+            .setURL(data.sup.link)
+            .setLabel('CLICK ME');
+
+        message.channel.send(supmsg, supbtn)
+        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'support triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
     }
 
     // ------------------------- STATS -------------------------
