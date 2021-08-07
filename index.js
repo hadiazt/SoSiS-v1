@@ -15,20 +15,43 @@ var config = require('./data/config.json')
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 
+    client.user.setPresence({
+        status: config.Presence.status,
+        activity: {
+            name: config.Presence.activity.name,
+            type: config.Presence.activity.type,
+        }
+    })
+
 });
+
+
+client.on("guildCreate", async function (guild) {
+
+    let JoinEmbed = new Discord.MessageEmbed()
+        .setDescription('🟢 سرور جدید به لیست اضافه شد\n\n')
+        .setAuthor(guild.name, guild.iconURL({ dynamic: true }))
+        .addField('نام سرور', guild.name, true)
+        .setColor('#1ebce8');
+    client.channels.cache.get('873572716458934304').send(JoinEmbed);
+
+});
+
+client.on("guildDelete", guild => {
+
+    let LeftEmbed = new Discord.MessageEmbed()
+        .setDescription('🔴 سرور جدیدی از لیست حذف شد\n\n')
+        .setAuthor(guild.name, guild.iconURL({ dynamic: true }))
+        .addField('نام سرور', guild.name, true)
+        .setColor('#c41a1a');
+    client.channels.cache.get('873572716458934304').send(LeftEmbed);
+
+})
+
 
 
 
 client.on("message", (message) => {
-
-
-    // if (message.content === `${config.PREFIX}profile`) {
-    //     var profilemsg = new Discord.MessageEmbed()
-    //         .setTitle(data.profile.title)
-    //         .setImage(data.profile.img)
-
-    //     message.inlineReply(profilemsg)
-    // }
 
     if (message.content === `${config.PREFIX}invite`) {
         var invmsg = new Discord.MessageEmbed()
