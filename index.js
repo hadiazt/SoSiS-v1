@@ -3,6 +3,7 @@ require("./ExtendedMessage");
 const client = new Discord.Client({ allowedMentions: { repliedUser: true } });
 
 const { Database } = require('beta.db')
+
 // برای وارد کردن اطلاعات به دیتابیس
 const minigame = new Database('./data/t&d.json')
 var settings = new Database('./data/config.json')
@@ -14,7 +15,6 @@ var config = require('./data/config.json')
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
-
     client.user.setPresence({
         status: config.Presence.status,
         activity: {
@@ -22,29 +22,26 @@ client.on('ready', () => {
             type: config.Presence.activity.type,
         }
     })
-
 });
 
 
 client.on("guildCreate", async function (guild) {
 
     let JoinEmbed = new Discord.MessageEmbed()
-        .setDescription('🟢 سرور جدید به لیست اضافه شد\n\n')
+        .setDescription(data.join.msg)
         .setAuthor(guild.name, guild.iconURL({ dynamic: true }))
-        .addField('نام سرور', guild.name, true)
-        .setColor('#1ebce8');
-    client.channels.cache.get('873572716458934304').send(JoinEmbed);
+        .setColor(data.join.color);
+    client.channels.cache.get(config.BOT_LOG).send(JoinEmbed);
 
 });
 
 client.on("guildDelete", guild => {
 
     let LeftEmbed = new Discord.MessageEmbed()
-        .setDescription('🔴 سرور جدیدی از لیست حذف شد\n\n')
+        .setDescription(data.left.msg)
         .setAuthor(guild.name, guild.iconURL({ dynamic: true }))
-        .addField('نام سرور', guild.name, true)
-        .setColor('#c41a1a');
-    client.channels.cache.get('873572716458934304').send(LeftEmbed);
+        .setColor(data.left.color);
+    client.channels.cache.get(config.BOT_LOG).send(LeftEmbed);
 
 })
 
@@ -53,6 +50,7 @@ client.on("guildDelete", guild => {
 
 client.on("message", (message) => {
 
+    // ------------------------- INVITE -------------------------
     if (message.content === `${config.PREFIX}invite`) {
         var invmsg = new Discord.MessageEmbed()
             .setTitle(data.inv.title)
@@ -62,6 +60,7 @@ client.on("message", (message) => {
         message.inlineReply(invmsg)
     }
 
+    // ------------------------- STATS -------------------------
     if (message.content === `${config.PREFIX}stats`) {
         var statsmsg = new Discord.MessageEmbed()
             .setTitle(data.stats.tite)
@@ -71,12 +70,12 @@ client.on("message", (message) => {
 حالت : ${client.user.presence.status}
 پینگ : ${Math.round(client.ws.ping)}
 `)
-
         message.inlineReply(statsmsg)
     }
 
     var rating = Math.floor(Math.random() * 100) + 1;
 
+    // ------------------------- SIMP -------------------------
     if (message.content === `${config.PREFIX}simp`) {
         var pic = data.simp.thumbnails[Math.floor(Math.random() * data.simp.thumbnails.length)];
         var simpmsg = new Discord.MessageEmbed()
@@ -86,6 +85,7 @@ client.on("message", (message) => {
         message.inlineReply(simpmsg)
     }
 
+    // ------------------------- JAZAB -------------------------
     if (message.content === `${config.PREFIX}jazab`) {
         var jazabmsg = new Discord.MessageEmbed()
             .setTitle(data.jazab.title + rating + "/100")
@@ -93,6 +93,7 @@ client.on("message", (message) => {
         message.inlineReply(jazabmsg)
     }
 
+    // ------------------------- LOVE -------------------------
     if (message.content.startsWith(config.PREFIX + "love")) {
         if (!message.mentions.members.first()) return message.inlineReply(data.love.errors.mention).then(message.react('❌'));
 
@@ -113,7 +114,7 @@ client.on("message", (message) => {
             .setDescription(`درصد علاقه ${message.author} به ${person} : %${love}\n\n${loveLevel}`)
         message.inlineReply(loveEmbed)
     }
-
+    // ------------------------- TRUTH -------------------------
     if (message.content === `${config.PREFIX}truth`) {
         const truth = game.TRUTH[Math.floor(Math.random() * game.TRUTH.length)];
         let tmsg = new Discord.MessageEmbed()
@@ -122,6 +123,7 @@ client.on("message", (message) => {
         message.inlineReply(tmsg)
     }
 
+    // ------------------------- DARE -------------------------
     if (message.content === `${config.PREFIX}dare`) {
         const dare = game.DARE[Math.floor(Math.random() * game.DARE.length)];
         let dmsg = new Discord.MessageEmbed()
@@ -132,28 +134,62 @@ client.on("message", (message) => {
 
 
 
-    if (message.author.id === config.OWNER) {
+    // -------------------- ADD DARE&TRUTH --------------------
 
-        const gameargs = message.content.slice(config.PREFIX.length).trim().split(' ');
-        const gamecommand = gameargs.shift().toLowerCase();
+    const gameargs = message.content.slice(config.PREFIX.length).trim().split(' ');
+    const gamecommand = gameargs.shift().toLowerCase();
 
-        if (gamecommand === 'add-dare') {
-            minigame.push('DARE', gameargs.join(" "));
-            message.inlineReply(data.td.dare.msg)
+    // ------------------------- DARE -------------------------
+    if (gamecommand === 'add-dare') {
+        if (!gameargs.length) {
+            return message.inlineReply(data.td.dare.empty)
         }
-        if (gamecommand === 'add-truth') {
-            minigame.push('TRUTH', gameargs.join(" "));
-            message.inlineReply(data.td.truth.msg)
+        if (message.author.id === config.OWNER) {
+            minigame.push('DARE', gameargs.join(" "));
+            var dareadded = new Discord.MessageEmbed()
+                .setTitle(data.td.dare.msg)
+                .setColor('GREEN')
+            message.inlineReply(dareadded)
+        } else {
+            var notacc = new Discord.MessageEmbed()
+                .setTitle(data.error.msg)
+                .setColor(data.error.color)
+            message.inlineReply(notacc)
         }
     }
 
-    if (message.author.id === config.OWNER) {
+    // ------------------------- TRUTH -------------------------
+    if (gamecommand === 'add-truth') {
+        if (!gameargs.length) {
+            return message.inlineReply(data.td.truth.empty)
+        }
+        if (message.author.id === config.OWNER) {
+            minigame.push('TRUTH', gameargs.join(" "));
+            var truthadded = new Discord.MessageEmbed()
+                .setTitle(data.td.truth.msg)
+                .setColor('GREEN')
+            message.inlineReply(truthadded)
+        } else {
+            var notacc = new Discord.MessageEmbed()
+                .setTitle(data.error.msg)
+                .setColor(data.error.color)
+            message.inlineReply(notacc)
+        }
+    }
 
-        const trustedargs = message.content.slice(config.PREFIX.length).trim().split(' ');
-        const addtrustedcommand = trustedargs.shift().toLowerCase();
 
-        if (addtrustedcommand === 'add-trusted') {
+    const trustedargs = message.content.slice(config.PREFIX.length).trim().split(' ');
+    const addtrustedcommand = trustedargs.shift().toLowerCase();
+
+    if (addtrustedcommand === 'add-trusted') {
+        if (message.author.id === config.OWNER) {
+
             settings.push('TRUSTED', trustedargs.join(" "))
+        } else {
+            var notacc = new Discord.MessageEmbed()
+                .setTitle(data.error.msg)
+                .setColor('GREEN')
+            message.inlineReply(notacc)
         }
     }
 
