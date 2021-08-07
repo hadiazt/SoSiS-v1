@@ -6,6 +6,7 @@
   "author": "hadi.az",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^12.5.3"
+    "discord.js": "^12.5.3",
+    "beta.db": "^3.0.2"
   }
 }
