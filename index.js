@@ -69,6 +69,7 @@ client.on("message", (message) => {
 تعداد چنل ها : ${client.users.cache.size}
 حالت : ${client.user.presence.status}
 پینگ : ${Math.round(client.ws.ping)}
+ورژن : ${config.VER}
 `)
         message.inlineReply(statsmsg)
     }
@@ -177,13 +178,12 @@ client.on("message", (message) => {
         }
     }
 
-
+    // ------------------------- ADD TRUSTED -------------------------
     const trustedargs = message.content.slice(config.PREFIX.length).trim().split(' ');
     const addtrustedcommand = trustedargs.shift().toLowerCase();
 
     if (addtrustedcommand === 'add-trusted') {
         if (message.author.id === config.OWNER) {
-
             settings.push('TRUSTED', trustedargs.join(" "))
         } else {
             var notacc = new Discord.MessageEmbed()
