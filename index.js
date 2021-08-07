@@ -18,7 +18,7 @@ client.on('ready', () => {
     client.user.setPresence({
         status: config.Presence.status,
         activity: {
-            name: config.Presence.activity.name,
+            name: config.PREFIX + config.Presence.activity.name,
             type: config.Presence.activity.type,
         }
     })
@@ -164,7 +164,7 @@ client.on("message", (message) => {
                 .setTitle(data.td.dare.msg)
                 .setColor('GREEN')
             message.inlineReply(dareadded)
-        client.channels.cache.get(config.ACTION_LOG).send('```\n' + gameargs.join(" ") + ' added by ' + message.author.username + '\n```');
+            client.channels.cache.get(config.ACTION_LOG).send('```\n' + gameargs.join(" ") + ' added by ' + message.author.username + '\n```');
         } else {
             var notacc = new Discord.MessageEmbed()
                 .setTitle(data.error.msg)
@@ -184,7 +184,7 @@ client.on("message", (message) => {
                 .setTitle(data.td.truth.msg)
                 .setColor('GREEN')
             message.inlineReply(truthadded)
-        client.channels.cache.get(config.ACTION_LOG).send('```\n' + gameargs.join(" ") + ' added by ' + message.author.username + '\n```');
+            client.channels.cache.get(config.ACTION_LOG).send('```\n' + gameargs.join(" ") + ' added by ' + message.author.username + '\n```');
         } else {
             var notacc = new Discord.MessageEmbed()
                 .setTitle(data.error.msg)

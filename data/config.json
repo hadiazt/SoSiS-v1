@@ -12,7 +12,7 @@
     "Presence":{
         "status": "idle",
         "activity": {
-            "name": "!help",
+            "name": "help",
             "type": "LISTENING"
         }
     }
