@@ -51,36 +51,6 @@ client.on("guildDelete", guild => {
 
 client.on("message", (message) => {
 
-    // ------------------------- AFK -------------------------
-
-    const afkargs = message.content.slice(prefix.length).trim().split(' ');
-    const afkcommand = afkargs.shift().toLowerCase();
-
-    if (afkdb.has(message.author.id + '.afk')) {
-        message.inlineReply(data.afk.wlcback);
-        afkdb.remove(message.author.id + '.afk');
-        afkdb.remove(message.author.id + '.messageafk');
-        message.member.roles.remove(afkrole)
-    }
-
-    if (afkcommand === 'afk') {
-        message.inlineReply(`شما در دیتابیس به دلیل زیر با موفقیت به حالت **AFK** ست شدید\n${afkargs.join(" ")}`);
-        afkdb.set(message.author.id + '.afk', 'true');
-        afkdb.set(message.author.id + '.messageafk', `${afkargs.join(" ")}` || 'تعریف نشده');
-        message.member.roles.add(afkrole)
-    }
-
-    message.mentions.users.forEach((user) => {
-        if (message.author.bot) return false;
-
-        if (message.content.includes('@here') || message.content.includes('@everyone')) return false;
-        if (afkdb.has(user.id + '.afk')) {
-            var r = afkdb.get(user.id + '.messageafk')
-            message.inlineReply(`به دلیل زیر <@${user.id}> **AFK** میباشد\n${r} `);
-        }
-
-    });
-
     // ------------------------- HELP -------------------------
     if (message.content === `${config.PREFIX}help`) {
         const helpmsg = new Discord.MessageEmbed()
@@ -134,6 +104,34 @@ client.on("message", (message) => {
         message.inlineReply(statsmsg)
         client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'stats triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
     }
+
+    // ------------------------- AFK -------------------------
+    const afkargs = message.content.slice(config.PREFIX.length).trim().split(' ');
+    const afkcommand = afkargs.shift().toLowerCase();
+
+    if (afkdb.has(message.author.id + '.afk')) {
+        message.inlineReply(data.afk.wlcback);
+        afkdb.remove(message.author.id + '.afk');
+        afkdb.remove(message.author.id + '.messageafk');
+    }
+
+    if (afkcommand === 'afk') {
+        message.inlineReply(`شما در دیتابیس به دلیل زیر با موفقیت به حالت **AFK** ست شدید\n${afkargs.join(" ")}`);
+        afkdb.set(message.author.id + '.afk', 'true');
+        afkdb.set(message.author.id + '.messageafk', `${afkargs.join(" ")}` || 'تعریف نشده');
+        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'afk triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
+    }
+
+    message.mentions.users.forEach((user) => {
+        if (message.author.bot) return false;
+
+        if (message.content.includes('@here') || message.content.includes('@everyone')) return false;
+        if (afkdb.has(user.id + '.afk')) {
+            var r = afkdb.get(user.id + '.messageafk')
+            message.inlineReply(`به دلیل زیر <@${user.id}> **AFK** میباشد\n${r} `);
+        }
+
+    });
 
     var rating = Math.floor(Math.random() * 100) + 1;
 
