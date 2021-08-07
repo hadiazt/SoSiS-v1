@@ -58,6 +58,7 @@ client.on("message", (message) => {
             .setThumbnail(client.user.displayAvatarURL({ size: 2048 }))
 
         message.inlineReply(invmsg)
+        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'invite triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
     }
 
     // ------------------------- STATS -------------------------
@@ -76,8 +77,9 @@ client.on("message", (message) => {
                 '```\n' + Math.round(client.ws.ping) + '\n```\n'
                 + 'ورژن :\n' +
                 '```\n' + config.VER + '\n```\n')
-                .setColor('GREEN')
+            .setColor('GREEN')
         message.inlineReply(statsmsg)
+        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'stats triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
     }
 
     var rating = Math.floor(Math.random() * 100) + 1;
@@ -90,6 +92,7 @@ client.on("message", (message) => {
             .setColor(data.simp.color)
             .setThumbnail(pic)
         message.inlineReply(simpmsg)
+        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'simp triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
     }
 
     // ------------------------- JAZAB -------------------------
@@ -98,6 +101,7 @@ client.on("message", (message) => {
             .setTitle(data.jazab.title + rating + "/100")
             .setColor(data.jazab.color)
         message.inlineReply(jazabmsg)
+        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'jazab triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
     }
 
     // ------------------------- LOVE -------------------------
@@ -120,6 +124,7 @@ client.on("message", (message) => {
             .setTitle(data.love.title)
             .setDescription(`درصد علاقه ${message.author} به ${person} : % ${love}\n\n${loveLevel}`)
         message.inlineReply(loveEmbed)
+        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'love triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
     }
     // ------------------------- TRUTH -------------------------
     if (message.content === `${config.PREFIX}truth`) {
@@ -128,6 +133,7 @@ client.on("message", (message) => {
             .setTitle(' 🟢 ' + truth + ' 🟢 ')
             .setColor(data.td.truth.color)
         message.inlineReply(tmsg)
+        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'truth triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
     }
 
     // ------------------------- DARE -------------------------
@@ -137,6 +143,7 @@ client.on("message", (message) => {
             .setTitle(' 🔴 ' + dare + ' 🔴 ')
             .setColor(data.td.dare.color)
         message.inlineReply(dmsg)
+        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'dare triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
     }
 
 
@@ -157,6 +164,7 @@ client.on("message", (message) => {
                 .setTitle(data.td.dare.msg)
                 .setColor('GREEN')
             message.inlineReply(dareadded)
+        client.channels.cache.get(config.ACTION_LOG).send('```\n' + gameargs.join(" ") + ' added by ' + message.author.username + '\n```');
         } else {
             var notacc = new Discord.MessageEmbed()
                 .setTitle(data.error.msg)
@@ -176,6 +184,7 @@ client.on("message", (message) => {
                 .setTitle(data.td.truth.msg)
                 .setColor('GREEN')
             message.inlineReply(truthadded)
+        client.channels.cache.get(config.ACTION_LOG).send('```\n' + gameargs.join(" ") + ' added by ' + message.author.username + '\n```');
         } else {
             var notacc = new Discord.MessageEmbed()
                 .setTitle(data.error.msg)
