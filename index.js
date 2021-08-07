@@ -54,7 +54,7 @@ client.on("message", (message) => {
 
 
 
-    if (message.content === `${config.PREIFX}help`) {
+    if (message.content === `${config.PREFIX}help`) {
 
         const helpmsg = new Discord.MessageEmbed()
             .setAuthor(`${message.author.username} : درخواست شده توسط`, `${message.author.displayAvatarURL({dynamic : true})}`)
