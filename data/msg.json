@@ -3,6 +3,10 @@
         "link":"https://google.com",
         "title":"برای دعوت من کلیک کنید"
     },
+    "profile":{
+        "title":"عکس های پروفایل رندوم",
+        "img":"https://source.unsplash.com/1600x900/?girl,boy,woman,man,eboy,egirl,"
+    },
     "simp": {
         "title": "😛 درصد سیمپ بودن شما % ",
         "color": "#AADC24",

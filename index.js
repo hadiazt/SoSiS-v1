@@ -22,16 +22,24 @@ client.on('ready', () => {
 client.on("message", (message) => {
 
 
+    if (message.content === `${config.PREFIX}profile`) {
+
+        let profilemsg = new Discord.MessageEmbed()
+            .setTitle(data.profile.title)
+            .setImage(data.profile.img)
+
+        message.inlineReply(profilemsg)
+    }
     if (message.content === `${config.PREFIX}invite`) {
         var invmsg = new Discord.MessageEmbed()
             .setTitle(data.inv.title)
             .setURL(data.inv.link)
+            
         message.inlineReply(invmsg)
-
     }
 
     if (message.content === `${config.PREFIX}stats`) {
-// will be add
+        // will be add
     }
 
     var rating = Math.floor(Math.random() * 100) + 1;
