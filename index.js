@@ -50,6 +50,28 @@ client.on("guildDelete", guild => {
 
 client.on("message", (message) => {
 
+    // ------------------------- HELP -------------------------
+    if (message.content === `${config.PREFIX}help`) {
+        const helpmsg = new Discord.MessageEmbed()
+            .setAuthor(`${message.author.username} : درخواست شده توسط`, `${message.author.displayAvatarURL({ dynamic: true })}`)
+            .setThumbnail(client.user.displayAvatarURL({ size: 2048 }))
+            .setColor('GREEN')
+            .setDescription(`**--------------- Public ---------------**\n\`\`\`1)invite\n2)stats\n3)report\n4)support = سرور پشتیبانی\n5)simp\n6)jazab\n7)love [mention]\n8)truth\n9)dare\`\`\`\n**--------- Bot Admin Only ----------**\n\`\`\`1)add-dare\n2)add-truth\`\`\`\n**--------------- Owner ---------------**\n\`\`\`1)add-trusted\`\`\``)
+
+        message.inlineReply(helpmsg)
+        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'help triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
+    }
+
+    // ------------------------- SUPPORT -------------------------
+    if (message.content === `${config.PREFIX}support`) {
+        var supmsg = new Discord.MessageEmbed()
+            .setTitle(data.sup.title)
+            .setURL(data.sup.link)
+            .setThumbnail(client.user.displayAvatarURL({ size: 2048 }))
+
+        message.inlineReply(supmsg)
+        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'support triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
+    }
     // ------------------------- INVITE -------------------------
     if (message.content === `${config.PREFIX}invite`) {
         var invmsg = new Discord.MessageEmbed()
