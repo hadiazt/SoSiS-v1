@@ -76,6 +76,7 @@ client.on("message", (message) => {
                 '```\n' + Math.round(client.ws.ping) + '\n```\n'
                 + 'ورژن :\n' +
                 '```\n' + config.VER + '\n```\n')
+                .setColor('GREEN')
         message.inlineReply(statsmsg)
     }
 
