@@ -22,31 +22,40 @@ client.on('ready', () => {
 client.on("message", (message) => {
 
 
-    if (message.content === `${config.PREFIX}profile`) {
+    // if (message.content === `${config.PREFIX}profile`) {
+    //     var profilemsg = new Discord.MessageEmbed()
+    //         .setTitle(data.profile.title)
+    //         .setImage(data.profile.img)
 
-        let profilemsg = new Discord.MessageEmbed()
-            .setTitle(data.profile.title)
-            .setImage(data.profile.img)
+    //     message.inlineReply(profilemsg)
+    // }
 
-        message.inlineReply(profilemsg)
-    }
     if (message.content === `${config.PREFIX}invite`) {
         var invmsg = new Discord.MessageEmbed()
             .setTitle(data.inv.title)
             .setURL(data.inv.link)
-            
+            .setThumbnail(client.user.displayAvatarURL({ size: 2048 }))
+
         message.inlineReply(invmsg)
     }
 
     if (message.content === `${config.PREFIX}stats`) {
-        // will be add
+        var statsmsg = new Discord.MessageEmbed()
+            .setTitle(data.stats.tite)
+            .setDescription(`تعداد سرور ها : ${client.guilds.cache.size}
+تعداد کاربران : ${client.users.cache.size}
+تعداد چنل ها : ${client.users.cache.size}
+حالت : ${client.user.presence.status}
+پینگ : ${Math.round(client.ws.ping)}
+`)
+
+        message.inlineReply(statsmsg)
     }
 
     var rating = Math.floor(Math.random() * 100) + 1;
 
     if (message.content === `${config.PREFIX}simp`) {
         var pic = data.simp.thumbnails[Math.floor(Math.random() * data.simp.thumbnails.length)];
-
         var simpmsg = new Discord.MessageEmbed()
             .setTitle(data.simp.title + rating + "/100 ")
             .setColor(data.simp.color)
@@ -86,6 +95,7 @@ client.on("message", (message) => {
         const truth = game.TRUTH[Math.floor(Math.random() * game.TRUTH.length)];
         let tmsg = new Discord.MessageEmbed()
             .setTitle(' 🟢 ' + truth + ' 🟢 ')
+            .setColor(data.td.truth.color)
         message.inlineReply(tmsg)
     }
 
@@ -93,6 +103,7 @@ client.on("message", (message) => {
         const dare = game.DARE[Math.floor(Math.random() * game.DARE.length)];
         let dmsg = new Discord.MessageEmbed()
             .setTitle(' 🔴 ' + dare + ' 🔴 ')
+            .setColor(data.td.dare.color)
         message.inlineReply(dmsg)
     }
 
@@ -105,9 +116,11 @@ client.on("message", (message) => {
 
         if (gamecommand === 'add-dare') {
             minigame.push('DARE', gameargs.join(" "));
+            message.inlineReply(data.td.dare.msg)
         }
         if (gamecommand === 'add-truth') {
             minigame.push('TRUTH', gameargs.join(" "));
+            message.inlineReply(data.td.truth.msg)
         }
     }
 
@@ -121,11 +134,7 @@ client.on("message", (message) => {
         }
     }
 
-    // if (message.content === 'a') {
-    //     if (message.author.id === config.TRUSTED[0]) {
-    //         console.log('a');
-    //     }
-    // }
+
 
 })
 
