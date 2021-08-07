@@ -16,11 +16,11 @@
     },
     "inv": {
         "link": "https://discord.com/api/oauth2/authorize?client_id=762378493929455617&permissions=137439861953&scope=bot",
-        "title": "برای دعوت من روی دکمه کلیک کنید"
+        "title": "برای دعوت من کلیک کنید"
     },
     "sup": {
         "link": "https://discord.gg/6WtJZAWEfR",
-        "title": "برای پیوستن به سرور پشتیبانی روی دکمه کلیک کنید"
+        "title": "برای پیوستن به سرور پشتیبانی کلیک کنید"
     },
     "stats": {
         "tite": "وضعیت ربات"
