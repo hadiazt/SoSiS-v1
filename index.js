@@ -7,7 +7,7 @@ const { Database } = require('beta.db')
 // برای وارد کردن اطلاعات به دیتابیس
 const minigame = new Database('./data/t&d.json')
 var settings = new Database('./data/config.json')
-const afkdb = new Database('afk.json')
+const afkdb = new Database('./data/afk.json')
 
 // برای گرفتن اطلاعات از دیتابیس
 var data = require('./data/msg.json')
