@@ -31,7 +31,7 @@ client.on("message", (message) => {
     }
 
     if (message.content === `${config.PREFIX}stats`) {
-
+// will be add
     }
 
     var rating = Math.floor(Math.random() * 100) + 1;
