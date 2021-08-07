@@ -65,7 +65,7 @@ client.on("message", (message) => {
         var statsmsg = new Discord.MessageEmbed()
             .setTitle(data.stats.tite)
             .setDescription('تعداد سرور ها :\n' +
-                '```\n' + client.guilds.cache.size + `\n'''\n`
+                '```\n' + client.guilds.cache.size + '\n```\n'
                 + 'تعداد کاربران :\n' +
                 '```\n' + client.users.cache.size + '\n```\n'
                 + 'تعداد چنل ها : \n' +
@@ -82,7 +82,7 @@ client.on("message", (message) => {
     var rating = Math.floor(Math.random() * 100) + 1;
 
     // ------------------------- SIMP -------------------------
-    if (message.content === `${ config.PREFIX }simp`) {
+    if (message.content === `${config.PREFIX}simp`) {
         var pic = data.simp.thumbnails[Math.floor(Math.random() * data.simp.thumbnails.length)];
         var simpmsg = new Discord.MessageEmbed()
             .setTitle(data.simp.title + rating + "/100 ")
@@ -92,7 +92,7 @@ client.on("message", (message) => {
     }
 
     // ------------------------- JAZAB -------------------------
-    if (message.content === `${ config.PREFIX }jazab`) {
+    if (message.content === `${config.PREFIX}jazab`) {
         var jazabmsg = new Discord.MessageEmbed()
             .setTitle(data.jazab.title + rating + "/100")
             .setColor(data.jazab.color)
@@ -117,11 +117,11 @@ client.on("message", (message) => {
             .setColor(data.love.color)
             .setThumbnail(pic)
             .setTitle(data.love.title)
-            .setDescription(`درصد علاقه ${ message.author } به ${ person } : % ${ love }\n\n${ loveLevel }`)
+            .setDescription(`درصد علاقه ${message.author} به ${person} : % ${love}\n\n${loveLevel}`)
         message.inlineReply(loveEmbed)
     }
     // ------------------------- TRUTH -------------------------
-    if (message.content === `${ config.PREFIX }truth`) {
+    if (message.content === `${config.PREFIX}truth`) {
         const truth = game.TRUTH[Math.floor(Math.random() * game.TRUTH.length)];
         let tmsg = new Discord.MessageEmbed()
             .setTitle(' 🟢 ' + truth + ' 🟢 ')
@@ -130,7 +130,7 @@ client.on("message", (message) => {
     }
 
     // ------------------------- DARE -------------------------
-    if (message.content === `${ config.PREFIX }dare`) {
+    if (message.content === `${config.PREFIX}dare`) {
         const dare = game.DARE[Math.floor(Math.random() * game.DARE.length)];
         let dmsg = new Discord.MessageEmbed()
             .setTitle(' 🔴 ' + dare + ' 🔴 ')
