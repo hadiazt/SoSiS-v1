@@ -7,6 +7,7 @@ const { Database } = require('beta.db')
 // برای وارد کردن اطلاعات به دیتابیس
 const minigame = new Database('./data/t&d.json')
 var settings = new Database('./data/config.json')
+const afkdb = new Database('afk.json')
 
 // برای گرفتن اطلاعات از دیتابیس
 var data = require('./data/msg.json')
@@ -50,13 +51,43 @@ client.on("guildDelete", guild => {
 
 client.on("message", (message) => {
 
+    // ------------------------- AFK -------------------------
+
+    const afkargs = message.content.slice(prefix.length).trim().split(' ');
+    const afkcommand = afkargs.shift().toLowerCase();
+
+    if (afkdb.has(message.author.id + '.afk')) {
+        message.inlineReply(data.afk.wlcback);
+        afkdb.remove(message.author.id + '.afk');
+        afkdb.remove(message.author.id + '.messageafk');
+        message.member.roles.remove(afkrole)
+    }
+
+    if (afkcommand === 'afk') {
+        message.inlineReply(`شما در دیتابیس به دلیل زیر با موفقیت به حالت **AFK** ست شدید\n${afkargs.join(" ")}`);
+        afkdb.set(message.author.id + '.afk', 'true');
+        afkdb.set(message.author.id + '.messageafk', `${afkargs.join(" ")}` || 'تعریف نشده');
+        message.member.roles.add(afkrole)
+    }
+
+    message.mentions.users.forEach((user) => {
+        if (message.author.bot) return false;
+
+        if (message.content.includes('@here') || message.content.includes('@everyone')) return false;
+        if (afkdb.has(user.id + '.afk')) {
+            var r = afkdb.get(user.id + '.messageafk')
+            message.inlineReply(`به دلیل زیر <@${user.id}> **AFK** میباشد\n${r} `);
+        }
+
+    });
+
     // ------------------------- HELP -------------------------
     if (message.content === `${config.PREFIX}help`) {
         const helpmsg = new Discord.MessageEmbed()
             .setAuthor(`${message.author.username} : درخواست شده توسط`, `${message.author.displayAvatarURL({ dynamic: true })}`)
             .setThumbnail(client.user.displayAvatarURL({ size: 2048 }))
             .setColor('GREEN')
-            .setDescription(`**--------------- Public ---------------**\n\`\`\`1)invite\n2)stats\n3)report\n4)support\n5)simp\n6)jazab\n7)love [mention]\n8)truth\n9)dare\`\`\`\n**--------- Bot Admin Only ----------**\n\`\`\`1)add-dare\n2)add-truth\`\`\`\n**--------------- Owner ---------------**\n\`\`\`1)add-trusted\`\`\``)
+            .setDescription(`**--------------- Public ---------------**\n\`\`\`1) ${config.PREFIX}invite\n2) ${config.PREFIX}stats\n3) ${config.PREFIX}report\n4) ${config.PREFIX}support\n5) ${config.PREFIX}simp\n6) ${config.PREFIX}jazab\n7) ${config.PREFIX}love [mention]\n8) ${config.PREFIX}truth\n9) ${config.PREFIX}dare\n10) ${config.PREFIX}afk\`\`\`\n**--------- Bot Admin Only ----------**\n\`\`\`1) ${config.PREFIX}add-dare\n2) ${config.PREFIX}add-truth\`\`\`\n**--------------- Owner ---------------**\n\`\`\`1) ${config.PREFIX}add-trusted\`\`\``)
 
         message.inlineReply(helpmsg)
         client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'help triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
