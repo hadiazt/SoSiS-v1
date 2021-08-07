@@ -20,6 +20,20 @@ client.on('ready', () => {
 
 
 client.on("message", (message) => {
+
+
+    if (message.content === `${config.PREFIX}invite`) {
+        var invmsg = new Discord.MessageEmbed()
+            .setTitle(data.inv.title)
+            .setURL(data.inv.link)
+        message.inlineReply(invmsg)
+
+    }
+
+    if (message.content === `${config.PREFIX}stats`) {
+
+    }
+
     var rating = Math.floor(Math.random() * 100) + 1;
 
     if (message.content === `${config.PREFIX}simp`) {
