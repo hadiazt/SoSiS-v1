@@ -62,7 +62,7 @@ client.on("message", (message) => {
             .setColor('GREEN')
             .setDescription(`**--------------- Public ---------------**\n\`\`\`1)invite\n2)stats\n3)report\n4)support\n5)simp\n6)jazab\n7)love [mention]\n8)truth\n9)dare\`\`\`\n**--------- Bot Admin Only ----------**\n\`\`\`1)add-dare\n2)add-truth\`\`\`\n**--------------- Owner ---------------**\n\`\`\`1)add-trusted\`\`\``)
     
-            message.inlineReply(helpMsg)
+            message.inlineReply(helpmsg)
         client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'help triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
 
     }
