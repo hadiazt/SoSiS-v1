@@ -8,10 +8,8 @@ const { Database } = require('beta.db')
 const minigame = new Database('./data/t&d.json')
 var settings = new Database('./data/config.json')
 const afkdb = new Database('./data/afk.json')
-const prefixdb = new Database('./data/prefix.json')
 
 // برای گرفتن اطلاعات از دیتابیس
-
 var data = require('./data/msg.json')
 var game = require('./data/t&d.json');
 var config = require('./data/config.json')
@@ -54,19 +52,19 @@ client.on("guildDelete", guild => {
 client.on("message", (message) => {
 
     // ------------------------- HELP -------------------------
-    if (message.content === `${prefixdb.get(message.guild.id + '.prefix')}help` && `${config.PREFIX}help`) {
+    if (message.content === `${config.PREFIX}help`) {
         const helpmsg = new Discord.MessageEmbed()
             .setAuthor(`${message.author.username} : درخواست شده توسط`, `${message.author.displayAvatarURL({ dynamic: true })}`)
             .setThumbnail(client.user.displayAvatarURL({ size: 2048 }))
             .setColor('GREEN')
-            .setDescription(`**--------------- Public ---------------**\n\`\`\`1) ${prefixdb.get(message.guild.id + '.prefix')} & ${config.PREFIX}invite\n2) ${prefixdb.get(message.guild.id + '.prefix')} & ${config.PREFIX}stats\n3) ${prefixdb.get(message.guild.id + '.prefix')} & ${config.PREFIX}report\n4) ${prefixdb.get(message.guild.id + '.prefix')} & ${config.PREFIX}support\n5) ${prefixdb.get(message.guild.id + '.prefix')} & ${config.PREFIX}simp\n6) ${prefixdb.get(message.guild.id + '.prefix')} & ${config.PREFIX}jazab\n7) ${prefixdb.get(message.guild.id + '.prefix')} & ${config.PREFIX}love [mention]\n8) ${prefixdb.get(message.guild.id + '.prefix')} & ${config.PREFIX}truth\n9) ${prefixdb.get(message.guild.id + '.prefix')} & ${config.PREFIX}dare\n10) ${prefixdb.get(message.guild.id + '.prefix')} & ${config.PREFIX}afk\n11) ${prefixdb.get(message.guild.id + '.prefix')} & ${config.PREFIX}report\n11) ${prefixdb.get(message.guild.id + '.prefix')} & ${config.PREFIX}prefix [ Server Admin ]\`\`\`\n**--------- Bot Admin Only ----------**\n\`\`\`1) ${config.PREFIX}add-dare\n2) ${config.PREFIX}add-truth\`\`\`\n**--------------- Owner ---------------**\n\`\`\`1) ${config.PREFIX}add-trusted\`\`\``)
+            .setDescription(`**--------------- Public ---------------**\n\`\`\`1) ${config.PREFIX}invite\n2) ${config.PREFIX}stats\n3) ${config.PREFIX}report\n4) ${config.PREFIX}support\n5) ${config.PREFIX}simp\n6) ${config.PREFIX}jazab\n7) ${config.PREFIX}love [mention]\n8) ${config.PREFIX}truth\n9) ${config.PREFIX}dare\n10) ${config.PREFIX}afk\n11) ${config.PREFIX}report\`\`\`\n**--------- Bot Admin Only ----------**\n\`\`\`1) ${config.PREFIX}add-dare\n2) ${config.PREFIX}add-truth\`\`\`\n**--------------- Owner ---------------**\n\`\`\`1) ${config.PREFIX}add-trusted\`\`\``)
 
         message.inlineReply(helpmsg)
         client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'help triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
     }
 
     // ------------------------- SUPPORT -------------------------
-    if (message.content === `${prefixdb.get(message.guild.id + '.prefix')}support` && `${config.PREFIX}support`) {
+    if (message.content === `${config.PREFIX}support`) {
         var supmsg = new Discord.MessageEmbed()
             .setTitle(data.sup.title)
             .setURL(data.sup.link)
@@ -76,7 +74,7 @@ client.on("message", (message) => {
         client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'support triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
     }
     // ------------------------- INVITE -------------------------
-    if (message.content === `${prefixdb.get(message.guild.id + '.prefix')}invite` && `${config.PREFIX}invite`) {
+    if (message.content === `${config.PREFIX}invite`) {
         var invmsg = new Discord.MessageEmbed()
             .setTitle(data.inv.title)
             .setURL(data.inv.link)
@@ -87,7 +85,7 @@ client.on("message", (message) => {
     }
 
     // ------------------------- STATS -------------------------
-    if (message.content === `${prefixdb.get(message.guild.id + '.prefix')}stats` && `${config.PREFIX}stats`) {
+    if (message.content === `${config.PREFIX}stats`) {
         var statsmsg = new Discord.MessageEmbed()
             .setTitle(data.stats.tite)
             .setDescription('تعداد سرور ها :\n' +
@@ -108,7 +106,7 @@ client.on("message", (message) => {
     }
 
     // ------------------------- AFK -------------------------
-    const afkargs = message.content.slice(prefixdb.get(message.guild.id + '.prefix') && config.PREFIX.length).trim().split(' ');
+    const afkargs = message.content.slice(config.PREFIX.length).trim().split(' ');
     const afkcommand = afkargs.shift().toLowerCase();
 
     if (afkdb.has(message.author.id + '.afk')) {
@@ -158,10 +156,10 @@ client.on("message", (message) => {
     }
 
     // ------------------------- LOVE -------------------------
-    if (message.content.startsWith(`${prefixdb.get(message.guild.id + '.prefix')}love` && config.PREFIX + "love")) {
+    if (message.content.startsWith(config.PREFIX + "love")) {
         if (!message.mentions.members.first()) return message.inlineReply(data.love.errors.mention).then(message.react('❌'));
 
-        let args = message.content.slice(prefixdb.get(message.guild.id + '.prefix') && config.PREFIX.length).split(/ +/)
+        let args = message.content.slice(config.PREFIX.length).split(/ +/)
         let person = message.mentions.members.first(message, args[0]);
         if (person.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
 
@@ -180,7 +178,7 @@ client.on("message", (message) => {
         client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'love triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
     }
     // ------------------------- TRUTH -------------------------
-    if (message.content === `${prefixdb.get(message.guild.id + '.prefix')}truth` && `${config.PREFIX}truth`) {
+    if (message.content === `${config.PREFIX}truth`) {
         const truth = game.TRUTH[Math.floor(Math.random() * game.TRUTH.length)];
         let tmsg = new Discord.MessageEmbed()
             .setTitle(' 🟢 ' + truth + ' 🟢 ')
@@ -190,7 +188,7 @@ client.on("message", (message) => {
     }
 
     // ------------------------- DARE -------------------------
-    if (message.content === `${prefixdb.get(message.guild.id + '.prefix')}dare` && `${config.PREFIX}dare`) {
+    if (message.content === `${config.PREFIX}dare`) {
         const dare = game.DARE[Math.floor(Math.random() * game.DARE.length)];
         let dmsg = new Discord.MessageEmbed()
             .setTitle(' 🔴 ' + dare + ' 🔴 ')
@@ -201,7 +199,7 @@ client.on("message", (message) => {
 
     // ------------------------- REPORT -------------------------
 
-    const reportargs = message.content.slice(prefixdb.get(message.guild.id + '.prefix') && config.PREFIX.length).trim().split(' ');
+    const reportargs = message.content.slice(config.PREFIX.length).trim().split(' ');
     const reportcommand = reportargs.shift().toLowerCase();
     if (reportcommand === 'report') {
         if (!reportargs.length) {
@@ -210,8 +208,8 @@ client.on("message", (message) => {
 
             let invite = message.channel.createInvite(
                 {
-                    maxAge: 10 * 60 * 1000,
-                    maxUses: 10
+                    maxAge: 10 * 60 * 1000, // maximum time for the invite, in milliseconds
+                    maxUses: 10 // maximum times it can be used
                 },
                 `Requested with command by ${message.author.tag}`
             )
@@ -224,13 +222,14 @@ client.on("message", (message) => {
                 .setTitle(data.report.repsent)
                 .setColor('GREEN')
             message.inlineReply(reportdone)
+
         }
     }
 
 
     // -------------------- ADD DARE&TRUTH --------------------
 
-    const gameargs = message.content.slice(prefixdb.get(message.guild.id + '.prefix') && config.PREFIX.length).trim().split(' ');
+    const gameargs = message.content.slice(config.PREFIX.length).trim().split(' ');
     const gamecommand = gameargs.shift().toLowerCase();
 
     // ------------------------- DARE -------------------------
@@ -274,7 +273,7 @@ client.on("message", (message) => {
     }
 
     // ------------------------- ADD TRUSTED -------------------------
-    const trustedargs = message.content.slice(prefixdb.get(message.guild.id + '.prefix') && config.PREFIX.length).trim().split(' ');
+    const trustedargs = message.content.slice(config.PREFIX.length).trim().split(' ');
     const addtrustedcommand = trustedargs.shift().toLowerCase();
 
     if (addtrustedcommand === 'add-trusted') {
@@ -288,44 +287,7 @@ client.on("message", (message) => {
         }
     }
 
-    // ------------------------- CUSTOM PREFIX -------------------------
 
-    const prefixargs = message.content.slice(prefixdb.get(message.guild.id + '.prefix') && config.PREFIX.length).trim().split(' ');
-    const prefixcommand = prefixargs.shift().toLowerCase();
-
-    if (prefixcommand === 'prefix') {
-
-        if (!message.member.hasPermission('ADMINISTRATOR')) return message.inlineReply(data.error.msg).then(message.react('❌'))
-        if (!prefixargs.length) {
-            return message.inlineReply(`پرفیکس پیش فرض : ${config.PREFIX}
-پرفیکس سرور : ${prefixdb.get(message.guild.id + '.prefix')}
-برای تعیین پرفیکس برای سرور خود به صورت زیر عمل کنید
-${config.PREFIX}prefix [هرچی]
-`)
-        } else {
-
-            prefixdb.set(message.author.id + '.prefix', prefixargs.join(" "));
-            const prefixchange = new Discord.MessageEmbed()
-                .setColor('GREEN')
-                .setTitle('پیش دستور سرور با موفقیت تغییر کرد به : ' + message.author.username)
-                .setDescription(prefixargs.join(" "))
-                .setTimestamp()
-            message.inlineReply(prefixchange)
-
-        }
-
-    }
-
-    // ------------------------- -------------------------
-
-    //     if (message.author.id === config.OWNER) {
-    //         settings.push('TRUSTED', trustedargs.join(" "))
-    //     } else {
-    //         var notacc = new Discord.MessageEmbed()
-    //             .setTitle(data.error.msg)
-    //             .setColor('GREEN')
-    //         message.inlineReply(notacc)
-    //     }
 
 })
 
