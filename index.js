@@ -214,7 +214,7 @@ client.on("message", (message) => {
                 `Requested with command by ${message.author.tag}`
             )
             var reportsub = new Discord.MessageEmbed()
-                .setAuthor('ثبت شد ' + message.author.username + ' گزارش جدید توسط ', message.author.displayAvatarURL({ dynamic: true }))
+                .setAuthor('گزارش جدید توسط ' + message.author.username + ' ثبت شد ', message.author.displayAvatarURL({ dynamic: true }))
                 .setDescription(reportargs.join(" ") + `\n\n\n[Click To Join](https://discord.gg/${invite.code})`)
                 .setColor('GREEN')
             client.channels.cache.get(config.REPORT_LOG).send(reportsub);
