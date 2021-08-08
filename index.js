@@ -19,7 +19,7 @@ client.on('ready', () => {
     client.user.setPresence({
         status: config.Presence.status,
         activity: {
-            name: config.PREFIX + config.Presence.activity.name,
+            name: config.PREFIX + config.Presence.activity.name + ' | v '+ config.VER,
             type: config.Presence.activity.type,
         }
     })
