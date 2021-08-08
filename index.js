@@ -177,6 +177,30 @@ client.on("message", (message) => {
         message.inlineReply(loveEmbed)
         client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'love triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
     }
+
+        // ------------------------- LAVAT -------------------------
+        if (message.content.startsWith(config.PREFIX + "lavat")) {
+            if (!message.mentions.members.first()) return message.inlineReply(data.lavat.errors.mention).then(message.react('❌'));
+    
+            let args = message.content.slice(config.PREFIX.length).split(/ +/)
+            let person = message.mentions.members.first(message, args[0]);
+            if (person.id === message.author.id) return message.inlineReply(data.lavat.errors.yourself)
+    
+            const lavat = Math.round(Math.random() * 100);
+            const lavatIndex = Math.floor(lavat / 10);
+            const lavatLevel = "🏳‍🌈".repeat(lavatIndex) + "🌈".repeat(10 - lavatIndex);
+    
+            var pic = data.lavat.thumbnails[Math.floor(Math.random() * data.lavat.thumbnails.length)];
+    
+            let lavatEmbed = new Discord.MessageEmbed()
+                .setColor(data.lavat.color)
+                .setThumbnail(pic)
+                .setTitle(data.lavat.title)
+                .setDescription(`درصد علاقه ${message.author} به ${person} : % ${lavat}\n\n${lavatLevel}`)
+            message.inlineReply(lavatEmbed)
+            client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'lavat triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
+        }
+
     // ------------------------- TRUTH -------------------------
     if (message.content === `${config.PREFIX}truth`) {
         const truth = game.TRUTH[Math.floor(Math.random() * game.TRUTH.length)];
