@@ -1,6 +1,6 @@
 {
     "PREFIX": "+",
-    "VER":"Beta 0.0.1",
+    "VER":"0.0.5",
     "OWNER": "490519932292038659",
     "BOT_LOG":"873572716458934304",
     "REPORT_LOG":"873579610535764018",
@@ -10,7 +10,7 @@
         "800769565877338122"
     ],
     "Presence":{
-        "status": "idle",
+        "status": "dnd",
         "activity": {
             "name": "help",
             "type": "LISTENING"
