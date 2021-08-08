@@ -84,19 +84,6 @@ client.on("message", (message) => {
         client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'invite triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
     }
 
-    // ------------------------- AVATAR -------------------------
-
-    if (message.content === `${config.PREFIX}avatar`) {
-        let member = message.mentions.users.first() || message.author;
-        let avatar = member.displayAvatarURL({ size: 2024, dynamic: true });
-
-        const avatarmsg = new Discord.MessageEmbed()
-            .setAuthor('پروفایل : ' + message.username)
-            .setImage(avatar)
-            .setColor("GREEN")
-        message.inlineReply(avatarmsg);
-        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'avatar triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
-    }
     // ------------------------- STATS -------------------------
     if (message.content === `${config.PREFIX}stats`) {
         var statsmsg = new Discord.MessageEmbed()
