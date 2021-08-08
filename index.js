@@ -19,7 +19,7 @@ client.on('ready', () => {
     client.user.setPresence({
         status: config.Presence.status,
         activity: {
-            name: config.PREFIX + config.Presence.activity.name + ' | v '+ config.VER,
+            name: config.PREFIX + config.Presence.activity.name + ' | v ' + config.VER,
             type: config.Presence.activity.type,
         }
     })
@@ -93,7 +93,7 @@ client.on("message", (message) => {
                 + 'تعداد کاربران :\n' +
                 '```\n' + client.users.cache.size + '\n```\n'
                 + 'تعداد چنل ها : \n' +
-                '```\n' + client.users.cache.size + '\n```\n'
+                '```\n' + client.channels.cache.size + '\n```\n'
                 + 'حالت :\n' +
                 '```\n' + client.user.presence.status + '\n```\n'
                 + 'پینگ :\n' +
@@ -197,6 +197,34 @@ client.on("message", (message) => {
         client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'dare triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
     }
 
+    // ------------------------- REPORT -------------------------
+
+    const reportargs = message.content.slice(config.PREFIX.length).trim().split(' ');
+    const reportcommand = reportargs.shift().toLowerCase();
+    if (reportcommand === 'report') {
+        if (!reportargs.length) {
+            return message.inlineReply(data.report.errormsg)
+        } else {
+
+            let invite = message.channel.createInvite(
+                {
+                    maxAge: 10 * 60 * 1000, // maximum time for the invite, in milliseconds
+                    maxUses: 10 // maximum times it can be used
+                },
+                `Requested with command by ${message.author.tag}`
+            )
+            var reportsub = new Discord.MessageEmbed()
+                .setAuthor('ثبت شد ' + message.author.username + ' گزارش جدید توسط ', message.author.displayAvatarURL({ dynamic: true }))
+                .setDescription(reportargs.join(" ") + `\n\n\n[Click To Join](https://discord.gg/${invite.code})`)
+                .setColor('GREEN')
+            client.channels.cache.get(config.REPORT_LOG).send(reportsub);
+            var reportdone = new Discord.MessageEmbed()
+                .setTitle(data.report.repsent)
+                .setColor('GREEN')
+            message.inlineReply(reportdone)
+
+        }
+    }
 
 
     // -------------------- ADD DARE&TRUTH --------------------
