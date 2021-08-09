@@ -57,7 +57,7 @@ client.on("message", (message) => {
             .setAuthor(`${message.author.username} : درخواست شده توسط`, `${message.author.displayAvatarURL({ dynamic: true })}`)
             .setThumbnail(client.user.displayAvatarURL({ size: 2048 }))
             .setColor('GREEN')
-            .setDescription(`**--------------- Public ---------------**\n\`\`\`1) ${config.PREFIX}invite\n2) ${config.PREFIX}stats\n3) ${config.PREFIX}report\n4) ${config.PREFIX}support\n5) ${config.PREFIX}simp\n6) ${config.PREFIX}jazab\n7) ${config.PREFIX}love [mention]\n8) ${config.PREFIX}truth\n9) ${config.PREFIX}dare\n10) ${config.PREFIX}afk\n11) ${config.PREFIX}report\n12) ${config.PREFIX}lavat\`\`\`\n**--------- Bot Admin Only ----------**\n\`\`\`1) ${config.PREFIX}add-dare\n2) ${config.PREFIX}add-truth\`\`\`\n**--------------- Owner ---------------**\n\`\`\`1) ${config.PREFIX}add-trusted\`\`\``)
+            .setDescription(`**--------------- Public ---------------**\n\`\`\`1) ${config.PREFIX}invite\n2) ${config.PREFIX}stats\n3) ${config.PREFIX}report\n4) ${config.PREFIX}support\n5) ${config.PREFIX}simp\n6) ${config.PREFIX}jazab\n7) ${config.PREFIX}love [mention]\n8) ${config.PREFIX}truth\n9) ${config.PREFIX}dare\n10) ${config.PREFIX}afk\n11) ${config.PREFIX}report\n12) ${config.PREFIX}lavat\n13) ${config.PREFIX}roll\`\`\`\n**--------- Bot Admin Only ----------**\n\`\`\`1) ${config.PREFIX}add-dare\n2) ${config.PREFIX}add-truth\`\`\`\n**--------------- Owner ---------------**\n\`\`\`1) ${config.PREFIX}add-trusted\`\`\``)
 
         message.inlineReply(helpmsg)
         client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'help triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
@@ -219,6 +219,13 @@ client.on("message", (message) => {
             .setColor(data.td.dare.color)
         message.inlineReply(dmsg)
         client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'dare triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
+    }
+
+        // ------------------------- ROLL -------------------------
+    if (message.content === `${config.PREFIX}roll`) {
+
+        message.inlineReply(rating)
+
     }
 
     // ------------------------- REPORT -------------------------
