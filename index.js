@@ -190,11 +190,11 @@ client.on("message", async message => {
           context.fillText(loveIndex + '%', canvas.width / 2.80, canvas.height / 1.3);
     
         }   
-        const user1 = await Canvas.loadImage(message.author.displayAvatarURL({ format: 'jpg' }));
-        const user2 = await Canvas.loadImage('https://cdn.discordapp.com/avatars/'+person.id+'/'+person.avatar+'.png?size=4096');
+        // const user1 = await Canvas.loadImage(message.author.displayAvatarURL({ format: 'jpg' }));
+        // const user2 = await Canvas.loadImage('https://cdn.discordapp.com/avatars/'+person.id+'/'+person.avatar+'.png?size=4096');
     
-        context.drawImage(user1, 0, 60, 200, 250);
-        context.drawImage(user2, 500, 60, 200, 250);
+        // context.drawImage(user1, 0, 60, 200, 250);
+        // context.drawImage(user2, 500, 60, 200, 250);
     
     
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png');
@@ -204,8 +204,9 @@ client.on("message", async message => {
             .setThumbnail(pic)
             .setTitle(data.love.title)
             .setDescription(`درصد علاقه ${message.author} به ${person} : % ${love}\n\n${loveLevel}`)
-            .setImage(attachment)
+            // .setImage(attachment)
         message.inlineReply(loveEmbed)
+        message.channel.send(attachment);
         client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'love triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
     }
 
