@@ -150,7 +150,7 @@ client.on("message", (message) => {
         rga.cuddle().then((data) => {
             
             var hugembed = new Discord.MessageEmbed()
-                .setTitle(` ${message.author.username} , ${user.username} را بقل کرد `)
+                .setTitle(` ${message.author.username} , ${user.username} را بغل کرد `)
                 .setImage(data)
             message.inlineReply(hugembed)
         })
