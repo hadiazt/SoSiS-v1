@@ -48,6 +48,133 @@ client.on("guildDelete", guild => {
 
 })
 
+client.on("message", (message) => {
+    
+    // ------------------------- GIFS -------------------------
+
+    if (message.content.startsWith(config.PREFIX + "bite")) {
+        const user = message.mentions.users.first();
+        if (!message.mentions.members.first()) return message.inlineReply(data.love.errors.mention).then(message.react('❌'));
+        if (user.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
+
+        rga.bite().then((data) => {
+            
+            var biteembed = new Discord.MessageEmbed()
+                .setTitle(` ${message.author.username} , ${user.username} را گاز گرفت`)
+                .setImage(data)
+            message.inlineReply(biteembed)
+        })
+        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'bite triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
+    }
+
+    if (message.content.startsWith(config.PREFIX + "kill")) {
+        const user = message.mentions.users.first();
+        if (!message.mentions.members.first()) return message.inlineReply(data.love.errors.mention).then(message.react('❌'));
+        if (user.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
+
+        rga.kill().then((data) => {
+            
+            var killembed = new Discord.MessageEmbed()
+                .setTitle(` ${message.author.username} , ${user.username} را کشت `)
+                .setImage(data)
+            message.inlineReply(killembed)
+        })
+        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'kill triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
+    }
+
+    if (message.content.startsWith(config.PREFIX + "tickle")) {
+        const user = message.mentions.users.first();
+        if (!message.mentions.members.first()) return message.inlineReply(data.love.errors.mention).then(message.react('❌'));
+        if (user.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
+
+        rga.tickle().then((data) => {
+            
+            var tickleembed = new Discord.MessageEmbed()
+                .setTitle(` ${message.author.username} , ${user.username} را بوسید `)
+                .setImage(data)
+            message.inlineReply(tickleembed)
+        })
+        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'tickle triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
+    }
+
+    if (message.content.startsWith(config.PREFIX + "lick")) {
+        const user = message.mentions.users.first();
+        if (!message.mentions.members.first()) return message.inlineReply(data.love.errors.mention).then(message.react('❌'));
+        if (user.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
+
+        rga.lick().then((data) => {
+            
+            var lickembed = new Discord.MessageEmbed()
+                .setTitle(` ${message.author.username} , ${user.username} را لیسید`)
+                .setImage(data)
+            message.inlineReply(lickembed)
+        })
+        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'lick triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
+    }
+
+    if (message.content.startsWith(config.PREFIX + "punch")) {
+        const user = message.mentions.users.first();
+        if (!message.mentions.members.first()) return message.inlineReply(data.love.errors.mention).then(message.react('❌'));
+        if (user.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
+
+        rga.punch().then((data) => {
+            
+            var punchembed = new Discord.MessageEmbed()
+                .setTitle(` ${message.author.username} , ${user.username} را مشت زد `)
+                .setImage(data)
+            message.inlineReply(punchembed)
+        })
+        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'punch triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
+    }
+
+    if (message.content.startsWith(config.PREFIX + "pat")) {
+        const user = message.mentions.users.first();
+        if (!message.mentions.members.first()) return message.inlineReply(data.love.errors.mention).then(message.react('❌'));
+        if (user.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
+
+        rga.pat().then((data) => {
+            
+            var patembed = new Discord.MessageEmbed()
+                .setTitle(` ${message.author.username} , ${user.username} را نوازش داد `)
+                .setImage(data)
+            message.inlineReply(patembed)
+        })
+        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'pat triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
+    }
+
+    if (message.content.startsWith(config.PREFIX + "hug")) {
+        const user = message.mentions.users.first();
+        if (!message.mentions.members.first()) return message.inlineReply(data.love.errors.mention).then(message.react('❌'));
+        if (user.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
+
+        rga.cuddle().then((data) => {
+            
+            var hugembed = new Discord.MessageEmbed()
+                .setTitle(` ${message.author.username} , ${user.username} را بقل کرد `)
+                .setImage(data)
+            message.inlineReply(hugembed)
+        })
+        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'hug triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
+    }
+
+    if (message.content.startsWith(config.PREFIX + "spank")) {
+        const user = message.mentions.users.first();
+        if (!message.mentions.members.first()) return message.inlineReply(data.love.errors.mention).then(message.react('❌'));
+        if (user.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
+
+        rga.spank().then((data) => {
+            
+            var spankembed = new Discord.MessageEmbed()
+                .setTitle(` ${message.author.username} , ${user.username} را درکونی زد `)
+                .setImage(data)
+            message.inlineReply(spankembed)
+        })
+        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'spank triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
+    }
+
+
+
+})
 
 
 
@@ -60,7 +187,7 @@ client.on("message", async message => {
         .setTitle("SoSiS Bot Help Panel:")
         .setThumbnail(client.user.displayAvatarURL({ size: 2048 }))
         .setColor('GREEN')
-        .setDescription(`<a:general:874679569616089108> **General Commands:**\n<:space:874678195843125278><:simp:874692273022066699> ${config.PREFIX}simp\n<:space:874678195843125278><a:jazab:874682299231404032> ${config.PREFIX}jazab\n<:space:874678195843125278><:love:874682750332969040> ${config.PREFIX}love [mention]\n<:space:874678195843125278><:truth:874683750137626625> ${config.PREFIX}truth\n<:space:874678195843125278><a:dare:874683807884804148> ${config.PREFIX}dare\n<:space:874678195843125278><:afk:874684531880390768> ${config.PREFIX}afk\n<:space:874678195843125278><:bite:874685539289296997> ${config.PREFIX}bite [mention]\n<:space:874678195843125278><:kill:874686143172599859> ${config.PREFIX}kill [mention]\n<:space:874678195843125278><:kisss:874686534064934933> ${config.PREFIX}kiss [mention]\n<:space:874678195843125278><:lick:874681150340227154> ${config.PREFIX}lick [mention]\n<:space:874678195843125278><a:punchh:874687568002813952> ${config.PREFIX}punch [mention]\n<:space:874678195843125278><a:patt:874693813417955379> ${config.PREFIX}pat [mention]\n<:space:874678195843125278><a:lavat:874689704757432430> ${config.PREFIX}lavat [mention]\n<:space:874678195843125278><:hug:874693914521636955> ${config.PREFIX}hug [mention]\n<:space:874678195843125278><a:spank:874694559890812999> ${config.PREFIX}spank [mention]\n<:space:874678195843125278><a:tickle:874695368590372896> ${config.PREFIX}tickle [mention]\n<:space:874678195843125278><:roll:874697669795262554> ${config.PREFIX}roll\n\n<:i_:787598077875716096> **Info & Support Commands**:\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}invite\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}stats\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}report\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}support`);
+        .setDescription(`<a:general:874679569616089108> **General Commands:**\n<:space:874678195843125278><:simp:874692273022066699> ${config.PREFIX}simp\n<:space:874678195843125278><a:jazab:874682299231404032> ${config.PREFIX}jazab\n<:space:874678195843125278><:love:874682750332969040> ${config.PREFIX}love [mention]\n<:space:874678195843125278><:truth:874683750137626625> ${config.PREFIX}truth\n<:space:874678195843125278><a:dare:874683807884804148> ${config.PREFIX}dare\n<:space:874678195843125278><:afk:874684531880390768> ${config.PREFIX}afk\n<:space:874678195843125278><:bite:874685539289296997> ${config.PREFIX}bite [mention]\n<:space:874678195843125278><:kill:874686143172599859> ${config.PREFIX}kill [mention]\n<:space:874678195843125278><:lick:874681150340227154> ${config.PREFIX}lick [mention]\n<:space:874678195843125278><a:punchh:874687568002813952> ${config.PREFIX}punch [mention]\n<:space:874678195843125278><a:patt:874693813417955379> ${config.PREFIX}pat [mention]\n<:space:874678195843125278><a:lavat:874689704757432430> ${config.PREFIX}lavat [mention]\n<:space:874678195843125278><:hug:874693914521636955> ${config.PREFIX}hug [mention]\n<:space:874678195843125278><a:spank:874694559890812999> ${config.PREFIX}spank [mention]\n<:space:874678195843125278><a:tickle:874695368590372896> ${config.PREFIX}tickle [mention]\n<:space:874678195843125278><:roll:874697669795262554> ${config.PREFIX}roll\n\n<:i_:787598077875716096> **Info & Support Commands**:\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}invite\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}stats\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}report\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}support`);
 
             message.inlineReply(helpembed)
         client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'help triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
@@ -232,142 +359,7 @@ client.on("message", async message => {
         client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'lavat triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
     }
 
-    // ------------------------- GIFS -------------------------
 
-    if (message.content.startsWith(config.PREFIX + "bite")) {
-        const user = message.mentions.users.first();
-        if (!message.mentions.members.first()) return message.inlineReply(data.love.errors.mention).then(message.react('❌'));
-        if (user.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
-
-        rga.bite().then((data) => {
-            console.log(data)
-            var biteembed = new Discord.MessageEmbed()
-                .setTitle(` ${message.author.username} , ${user.username} را گاز گرفت`)
-                .setImage(data)
-            message.inlineReply(biteembed)
-        })
-        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'bite triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
-    }
-
-    if (message.content.startsWith(config.PREFIX + "kill")) {
-        const user = message.mentions.users.first();
-        if (!message.mentions.members.first()) return message.inlineReply(data.love.errors.mention).then(message.react('❌'));
-        if (user.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
-
-        rga.kill().then((data) => {
-            console.log(data)
-            var killembed = new Discord.MessageEmbed()
-                .setTitle(` ${message.author.username} , ${user.username} را کشت `)
-                .setImage(data)
-            message.inlineReply(killembed)
-        })
-        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'kill triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
-    }
-
-    if (message.content.startsWith(config.PREFIX + "kiss")) {
-        const user = message.mentions.users.first();
-        if (!message.mentions.members.first()) return message.inlineReply(data.love.errors.mention).then(message.react('❌'));
-        if (user.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
-
-        rga.kiss().then((data) => {
-            console.log(data)
-            var kissembed = new Discord.MessageEmbed()
-                .setTitle(` ${message.author.username} , ${user.username} را بوسید `)
-                .setImage(data)
-            message.inlineReply(kissembed)
-        })
-        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'kiss triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
-    }
-
-    if (message.content.startsWith(config.PREFIX + "lick")) {
-        const user = message.mentions.users.first();
-        if (!message.mentions.members.first()) return message.inlineReply(data.love.errors.mention).then(message.react('❌'));
-        if (user.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
-
-        rga.lick().then((data) => {
-            console.log(data)
-            var lickembed = new Discord.MessageEmbed()
-                .setTitle(` ${message.author.username} , ${user.username} را لیسید`)
-                .setImage(data)
-            message.inlineReply(lickembed)
-        })
-        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'lick triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
-    }
-
-    if (message.content.startsWith(config.PREFIX + "punch")) {
-        const user = message.mentions.users.first();
-        if (!message.mentions.members.first()) return message.inlineReply(data.love.errors.mention).then(message.react('❌'));
-        if (user.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
-
-        rga.punch().then((data) => {
-            console.log(data)
-            var punchembed = new Discord.MessageEmbed()
-                .setTitle(` ${message.author.username} , ${user.username} را مشت زد `)
-                .setImage(data)
-            message.inlineReply(punchembed)
-        })
-        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'punch triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
-    }
-
-    if (message.content.startsWith(config.PREFIX + "pat")) {
-        const user = message.mentions.users.first();
-        if (!message.mentions.members.first()) return message.inlineReply(data.love.errors.mention).then(message.react('❌'));
-        if (user.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
-
-        rga.pat().then((data) => {
-            console.log(data)
-            var patembed = new Discord.MessageEmbed()
-                .setTitle(` ${message.author.username} , ${user.username} را نوازش داد `)
-                .setImage(data)
-            message.inlineReply(patembed)
-        })
-        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'pat triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
-    }
-
-    if (message.content.startsWith(config.PREFIX + "hug")) {
-        const user = message.mentions.users.first();
-        if (!message.mentions.members.first()) return message.inlineReply(data.love.errors.mention).then(message.react('❌'));
-        if (user.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
-
-        rga.cuddle().then((data) => {
-            console.log(data)
-            var hugembed = new Discord.MessageEmbed()
-                .setTitle(` ${message.author.username} , ${user.username} را بقل کرد `)
-                .setImage(data)
-            message.inlineReply(hugembed)
-        })
-        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'hug triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
-    }
-
-    if (message.content.startsWith(config.PREFIX + "spank")) {
-        const user = message.mentions.users.first();
-        if (!message.mentions.members.first()) return message.inlineReply(data.love.errors.mention).then(message.react('❌'));
-        if (user.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
-
-        rga.spank().then((data) => {
-            console.log(data)
-            var spankembed = new Discord.MessageEmbed()
-                .setTitle(` ${message.author.username} , ${user.username} را درکونی زد `)
-                .setImage(data)
-            message.inlineReply(spankembed)
-        })
-        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'spank triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
-    }
-
-    if (message.content.startsWith(config.PREFIX + "bite")) {
-        const user = message.mentions.users.first();
-        if (!message.mentions.members.first()) return message.inlineReply(data.love.errors.mention).then(message.react('❌'));
-        if (user.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
-
-        rga.tickle().then((data) => {
-            console.log(data)
-            var tickleembed = new Discord.MessageEmbed()
-                .setTitle(` ${message.author.username} , ${user.username} را قلقک داد `)
-                .setImage(data)
-            message.inlineReply(tickleembed)
-        })
-        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'tickle triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
-    }
 
     // ------------------------- TRUTH -------------------------
     if (message.content === `${config.PREFIX}truth`) {

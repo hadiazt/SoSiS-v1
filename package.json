@@ -8,6 +8,7 @@
   "dependencies": {
     "beta.db": "^3.0.2",
     "canvas": "^2.8.0",
-    "discord.js": "^12.5.3"
+    "discord.js": "^12.5.3",
+    "random-gif-api": "^1.0.4"
   }
 }
