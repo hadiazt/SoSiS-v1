@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 require("./ExtendedMessage");
 const client = new Discord.Client({ allowedMentions: { repliedUser: true } });
+const Canvas = require('canvas');
+Canvas.registerFont('./font/OpenSans-ExtraBoldItalic.ttf', { family: 'OpenSans-Regular' })
 
 const { Database } = require('beta.db')
 
@@ -49,7 +51,7 @@ client.on("guildDelete", guild => {
 
 
 
-client.on("message", (message) => {
+client.on("message", async message => {
 
     // ------------------------- HELP -------------------------
     if (message.content === `${config.PREFIX}help`) {
@@ -156,6 +158,8 @@ client.on("message", (message) => {
     }
 
     // ------------------------- LOVE -------------------------
+
+
     if (message.content.startsWith(config.PREFIX + "love")) {
         if (!message.mentions.members.first()) return message.inlineReply(data.love.errors.mention).then(message.react('❌'));
 
@@ -169,37 +173,74 @@ client.on("message", (message) => {
 
         var pic = data.love.thumbnails[Math.floor(Math.random() * data.love.thumbnails.length)];
 
+
+
+
+        const canvas = Canvas.createCanvas(700, 250);
+
+        const context = canvas.getContext('2d');
+
+        context.strokeStyle = '#74037b';
+        context.strokeRect(0, 0, canvas.width, canvas.height);
+
+        context.font = '30px OpenSans-Regular';
+        context.fillStyle = '#ffffff';
+        context.fillText(message.author.username, 100, 45, 200, 250);
+        context.fillText(person.username, 400, 45, 200, 250);
+
+        context.font = '100px OpenSans-Regular';
+        context.fillStyle = '#FF00FF';
+        if (love === '100') {
+            context.fillText(love + '%', canvas.width / 3.3, canvas.height / 1.3);
+
+        } else {
+            context.fillText(love + '%', canvas.width / 2.80, canvas.height / 1.3);
+
+        }
+
+        const user1 = await Canvas.loadImage(message.author.displayAvatarURL({ format: 'jpg' }));
+        const user2 = await Canvas.loadImage(person.displayAvatarURL({ format: 'jpg' }));
+
+        context.drawImage(user1, 0, 60, 200, 250);
+        context.drawImage(user2, 500, 60, 200, 250);
+
+
+
+        var imagef = canvas.toBuffer()
+
+
         let loveEmbed = new Discord.MessageEmbed()
             .setColor(data.love.color)
             .setThumbnail(pic)
             .setTitle(data.love.title)
             .setDescription(`درصد علاقه ${message.author} به ${person} : % ${love}\n\n${loveLevel}`)
+            .setImage(imagef)
         message.inlineReply(loveEmbed)
         client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'love triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
     }
 
-        // ------------------------- LAVAT -------------------------
-        if (message.content.startsWith(config.PREFIX + "lavat")) {
-            if (!message.mentions.members.first()) return message.inlineReply(data.lavat.errors.mention).then(message.react('❌'));
-    
-            let args = message.content.slice(config.PREFIX.length).split(/ +/)
-            let person = message.mentions.members.first(message, args[0]);
-            if (person.id === message.author.id) return message.inlineReply(data.lavat.errors.yourself)
-    
-            const lavat = Math.round(Math.random() * 100);
-            const lavatIndex = Math.floor(lavat / 10);
-            const lavatLevel = "🏳‍🌈".repeat(lavatIndex) + "🌈".repeat(10 - lavatIndex);
-    
-            var pic = data.lavat.thumbnails[Math.floor(Math.random() * data.lavat.thumbnails.length)];
-    
-            let lavatEmbed = new Discord.MessageEmbed()
-                .setColor(data.lavat.color)
-                .setThumbnail(pic)
-                .setTitle(data.lavat.title)
-                .setDescription(`درصد علاقه ${message.author} به ${person} : % ${lavat}\n\n${lavatLevel}`)
-            message.inlineReply(lavatEmbed)
-            client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'lavat triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
-        }
+    // ------------------------- LAVAT -------------------------
+    if (message.content.startsWith(config.PREFIX + "lavat")) {
+        if (!message.mentions.members.first()) return message.inlineReply(data.lavat.errors.mention).then(message.react('❌'));
+
+        let args = message.content.slice(config.PREFIX.length).split(/ +/)
+        let person = message.mentions.members.first(message, args[0]);
+        if (person.id === message.author.id) return message.inlineReply(data.lavat.errors.yourself)
+
+        const lavat = Math.round(Math.random() * 100);
+        const lavatIndex = Math.floor(lavat / 10);
+        const lavatLevel = "🏳‍🌈".repeat(lavatIndex) + "🌈".repeat(10 - lavatIndex);
+
+        var pic = data.lavat.thumbnails[Math.floor(Math.random() * data.lavat.thumbnails.length)];
+
+        let lavatEmbed = new Discord.MessageEmbed()
+            .setColor(data.lavat.color)
+            .setThumbnail(pic)
+            .setTitle(data.lavat.title)
+            .setDescription(`درصد علاقه ${message.author} به ${person} : % ${lavat}\n\n${lavatLevel}`)
+        message.inlineReply(lavatEmbed)
+        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'lavat triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
+    }
 
     // ------------------------- TRUTH -------------------------
     if (message.content === `${config.PREFIX}truth`) {
@@ -221,7 +262,7 @@ client.on("message", (message) => {
         client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'dare triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
     }
 
-        // ------------------------- ROLL -------------------------
+    // ------------------------- ROLL -------------------------
     if (message.content === `${config.PREFIX}roll`) {
 
         message.inlineReply(rating)
