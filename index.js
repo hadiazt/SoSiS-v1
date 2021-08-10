@@ -90,7 +90,7 @@ client.on("message", (message) => {
         rga.tickle().then((data) => {
             
             var tickleembed = new Discord.MessageEmbed()
-                .setTitle(` ${message.author.username} , ${user.username} را بوسید `)
+                .setTitle(` ${message.author.username} , ${user.username} را قلقاک `)
                 .setImage(data)
             message.inlineReply(tickleembed)
         })
