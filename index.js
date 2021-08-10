@@ -165,6 +165,7 @@ client.on("message", async message => {
         let args = message.content.slice(config.PREFIX.length).split(/ +/)
         let person = message.mentions.members.first(message, args[0]);
         if (person.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
+        const user = message.mentions.users.first();
 
         const love = Math.round(Math.random() * 100);
         const loveIndex = Math.floor(love / 10);
@@ -180,7 +181,9 @@ client.on("message", async message => {
         context.fillStyle = '#ffffff';
         context.fillText(message.author.username, 100, 45, 200, 250);
         context.fillText(message.author.username, 400, 45, 200, 250);
+
         // var num = Math.floor(Math.random() * 100) + 1;  
+        
         context.font = '100px OpenSans-Regular';
         context.fillStyle = '#FF00FF';
         if (loveIndex === '100') {
@@ -190,11 +193,11 @@ client.on("message", async message => {
           context.fillText(loveIndex + '%', canvas.width / 2.80, canvas.height / 1.3);
     
         }   
-        // const user1 = await Canvas.loadImage(message.author.displayAvatarURL({ format: 'jpg' }));
-        // const user2 = await Canvas.loadImage('https://cdn.discordapp.com/avatars/'+person.id+'/'+person.avatar+'.png?size=4096');
+        const user1 = await Canvas.loadImage(message.author.displayAvatarURL({ format: 'jpg' }));
+        const user2 = await Canvas.loadImage(user.displayAvatarURL({format:jpg}));
     
-        // context.drawImage(user1, 0, 60, 200, 250);
-        // context.drawImage(user2, 500, 60, 200, 250);
+        context.drawImage(user1, 0, 60, 200, 250);
+        context.drawImage(user2, 500, 60, 200, 250);
     
     
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png');
@@ -203,8 +206,8 @@ client.on("message", async message => {
             .setColor(data.love.color)
             .setThumbnail(pic)
             .setTitle(data.love.title)
-            .setDescription(`درصد علاقه ${message.author} به ${person} : % ${love}\n\n${loveLevel}`)
-            // .setImage(attachment)
+            .setDescription(`درصد علاقه ${message.author} به ${person}\n\n${loveLevel}`)
+            .setImage(attachment)
         message.inlineReply(loveEmbed)
         message.channel.send(attachment);
         client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'love triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
@@ -271,8 +274,8 @@ client.on("message", async message => {
 
             let invite = message.channel.createInvite(
                 {
-                    maxAge: 10 * 60 * 1000, // maximum time for the invite, in milliseconds
-                    maxUses: 10 // maximum times it can be used
+                    maxAge: 10 * 60 * 1000, 
+                    maxUses: 10 
                 },
                 `Requested with command by ${message.author.tag}`
             )
