@@ -10,6 +10,7 @@ const { Database } = require('beta.db')
 const minigame = new Database('./data/t&d.json')
 var settings = new Database('./data/config.json')
 const afkdb = new Database('./data/afk.json')
+const lovedb = new Database('./data/love.json');
 
 // برای گرفتن اطلاعات از دیتابیس
 var data = require('./data/msg.json')
@@ -49,7 +50,7 @@ client.on("guildDelete", guild => {
 })
 
 client.on("message", (message) => {
-    
+
     // ------------------------- GIFS -------------------------
 
     if (message.content.startsWith(config.PREFIX + "bite")) {
@@ -58,7 +59,7 @@ client.on("message", (message) => {
         if (user.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
 
         rga.bite().then((data) => {
-            
+
             var biteembed = new Discord.MessageEmbed()
                 .setTitle(` ${message.author.username} , ${user.username} را گاز گرفت`)
                 .setImage(data)
@@ -73,7 +74,7 @@ client.on("message", (message) => {
         if (user.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
 
         rga.kill().then((data) => {
-            
+
             var killembed = new Discord.MessageEmbed()
                 .setTitle(` ${message.author.username} , ${user.username} را کشت `)
                 .setImage(data)
@@ -88,7 +89,7 @@ client.on("message", (message) => {
         if (user.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
 
         rga.tickle().then((data) => {
-            
+
             var tickleembed = new Discord.MessageEmbed()
                 .setTitle(` ${message.author.username} , ${user.username} را قلقاک `)
                 .setImage(data)
@@ -103,7 +104,7 @@ client.on("message", (message) => {
         if (user.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
 
         rga.lick().then((data) => {
-            
+
             var lickembed = new Discord.MessageEmbed()
                 .setTitle(` ${message.author.username} , ${user.username} را لیسید`)
                 .setImage(data)
@@ -118,7 +119,7 @@ client.on("message", (message) => {
         if (user.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
 
         rga.punch().then((data) => {
-            
+
             var punchembed = new Discord.MessageEmbed()
                 .setTitle(` ${message.author.username} , ${user.username} را مشت زد `)
                 .setImage(data)
@@ -133,7 +134,7 @@ client.on("message", (message) => {
         if (user.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
 
         rga.pat().then((data) => {
-            
+
             var patembed = new Discord.MessageEmbed()
                 .setTitle(` ${message.author.username} , ${user.username} را نوازش داد `)
                 .setImage(data)
@@ -148,7 +149,7 @@ client.on("message", (message) => {
         if (user.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
 
         rga.cuddle().then((data) => {
-            
+
             var hugembed = new Discord.MessageEmbed()
                 .setTitle(` ${message.author.username} , ${user.username} را بغل کرد `)
                 .setImage(data)
@@ -163,7 +164,7 @@ client.on("message", (message) => {
         if (user.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
 
         rga.spank().then((data) => {
-            
+
             var spankembed = new Discord.MessageEmbed()
                 .setTitle(` ${message.author.username} , ${user.username} را درکونی زد `)
                 .setImage(data)
@@ -183,13 +184,13 @@ client.on("message", async message => {
     // ------------------------- HELP -------------------------
     if (message.content === `${config.PREFIX}help`) {
         const helpembed = new Discord.MessageEmbed()
-        .setAuthor(`${message.author.username} : درخواست شده توسط`, `${message.author.displayAvatarURL({ dynamic: true })}`)
-        .setTitle("SoSiS Bot Help Panel:")
-        .setThumbnail(client.user.displayAvatarURL({ size: 2048 }))
-        .setColor('GREEN')
-        .setDescription(`<a:general:874679569616089108> **General Commands:**\n<:space:874678195843125278><:simp:874692273022066699> ${config.PREFIX}simp\n<:space:874678195843125278><a:jazab:874682299231404032> ${config.PREFIX}jazab\n<:space:874678195843125278><:love:874682750332969040> ${config.PREFIX}love [mention]\n<:space:874678195843125278><:truth:874683750137626625> ${config.PREFIX}truth\n<:space:874678195843125278><a:dare:874683807884804148> ${config.PREFIX}dare\n<:space:874678195843125278><:afk:874684531880390768> ${config.PREFIX}afk\n<:space:874678195843125278><:bite:874685539289296997> ${config.PREFIX}bite [mention]\n<:space:874678195843125278><:kill:874686143172599859> ${config.PREFIX}kill [mention]\n<:space:874678195843125278><:lick:874681150340227154> ${config.PREFIX}lick [mention]\n<:space:874678195843125278><a:punchh:874687568002813952> ${config.PREFIX}punch [mention]\n<:space:874678195843125278><a:patt:874693813417955379> ${config.PREFIX}pat [mention]\n<:space:874678195843125278><a:lavat:874689704757432430> ${config.PREFIX}lavat [mention]\n<:space:874678195843125278><:hug:874693914521636955> ${config.PREFIX}hug [mention]\n<:space:874678195843125278><a:spank:874694559890812999> ${config.PREFIX}spank [mention]\n<:space:874678195843125278><a:tickle:874695368590372896> ${config.PREFIX}tickle [mention]\n<:space:874678195843125278><:roll:874697669795262554> ${config.PREFIX}roll\n\n<:i_:787598077875716096> **Info & Support Commands**:\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}invite\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}stats\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}report\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}support`);
+            .setAuthor(`${message.author.username} : درخواست شده توسط`, `${message.author.displayAvatarURL({ dynamic: true })}`)
+            .setTitle("SoSiS Bot Help Panel:")
+            .setThumbnail(client.user.displayAvatarURL({ size: 2048 }))
+            .setColor('GREEN')
+            .setDescription(`<a:general:874679569616089108> **General Commands:**\n<:space:874678195843125278><:simp:874692273022066699> ${config.PREFIX}simp\n<:space:874678195843125278><a:jazab:874682299231404032> ${config.PREFIX}jazab\n<:space:874678195843125278><:love:874682750332969040> ${config.PREFIX}love [mention]\n<:space:874678195843125278><:truth:874683750137626625> ${config.PREFIX}truth\n<:space:874678195843125278><a:dare:874683807884804148> ${config.PREFIX}dare\n<:space:874678195843125278><:afk:874684531880390768> ${config.PREFIX}afk\n<:space:874678195843125278><:bite:874685539289296997> ${config.PREFIX}bite [mention]\n<:space:874678195843125278><:kill:874686143172599859> ${config.PREFIX}kill [mention]\n<:space:874678195843125278><:lick:874681150340227154> ${config.PREFIX}lick [mention]\n<:space:874678195843125278><a:punchh:874687568002813952> ${config.PREFIX}punch [mention]\n<:space:874678195843125278><a:patt:874693813417955379> ${config.PREFIX}pat [mention]\n<:space:874678195843125278><a:lavat:874689704757432430> ${config.PREFIX}lavat [mention]\n<:space:874678195843125278><:hug:874693914521636955> ${config.PREFIX}hug [mention]\n<:space:874678195843125278><a:spank:874694559890812999> ${config.PREFIX}spank [mention]\n<:space:874678195843125278><a:tickle:874695368590372896> ${config.PREFIX}tickle [mention]\n<:space:874678195843125278><:roll:874697669795262554> ${config.PREFIX}roll\n\n<:i_:787598077875716096> **Info & Support Commands**:\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}invite\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}stats\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}report\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}support`);
 
-            message.inlineReply(helpembed)
+        message.inlineReply(helpembed)
         client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'help triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
     }
 
@@ -288,51 +289,86 @@ client.on("message", async message => {
     // ------------------------- LOVE -------------------------
 
     if (message.content.startsWith(config.PREFIX + "love")) {
-        if (!message.mentions.members.first()) return message.inlineReply(data.love.errors.mention).then(message.react('❌'));
-
-        let args = message.content.slice(config.PREFIX.length).split(/ +/)
-        let person = message.mentions.members.first(message, args[0]);
         const user = message.mentions.users.first();
 
+        if (!message.mentions.members.first()) return message.inlineReply(data.love.errors.mention).then(message.react('❌'));
         if (user.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
 
-        var love = Math.floor(Math.random() * 100) + 1;
+        if (lovedb.has(message.author.id + '.' + user.id)) {
 
-        var pic = data.love.thumbnails[Math.floor(Math.random() * data.love.thumbnails.length)];
-
-        const canvas = Canvas.createCanvas(700, 250);
-        const context = canvas.getContext('2d');
-
-        context.font = '30px OpenSans-Regular';
-        context.fillStyle = '#ffffff';
-        context.fillText(message.author.username, 100, 45, 200, 250);
-        context.fillText(user.username, 400, 45, 200, 250);
+            var lovenum = lovedb.get(message.author.id + '.' + user.id)
 
 
-        context.font = '100px OpenSans-Regular';
-        context.fillStyle = '#FF00FF';
-        if (love === '100') {
-            context.fillText(love + '%', canvas.width / 3.3, canvas.height / 1.3);
+            const canvas = Canvas.createCanvas(700, 250);
+            const context = canvas.getContext('2d');
+
+            context.font = '30px OpenSans-Regular';
+            context.fillStyle = '#ffffff';
+            context.fillText(message.author.username, 100, 45, 200, 250);
+            context.fillText(user.username, 400, 45, 200, 250);
+
+
+            context.font = '100px OpenSans-Regular';
+            context.fillStyle = '#FF00FF';
+            if (lovenum === '100') {
+                context.fillText(lovenum + '%', canvas.width / 3.3, canvas.height / 1.3);
+
+            } else {
+                context.fillText(lovenum + '%', canvas.width / 2.80, canvas.height / 1.3);
+
+            }
+            const user1 = await Canvas.loadImage(message.author.displayAvatarURL({ format: 'jpg' }));
+            const user2 = await Canvas.loadImage(user.displayAvatarURL({ format: 'jpg' }));
+
+            context.drawImage(user1, 0, 60, 200, 250);
+            context.drawImage(user2, 500, 60, 200, 250);
+
+            const loveattachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png');
+
+
+
+            message.inlineReply(`درصد علاقه ${message.author} به ${user}`, loveattachment)
+
 
         } else {
-            context.fillText(love + '%', canvas.width / 2.80, canvas.height / 1.3);
+
+            var lovegen = Math.floor(Math.random() * 100) + 1;
+
+            const canvas = Canvas.createCanvas(700, 250);
+            const context = canvas.getContext('2d');
+
+            context.font = '30px OpenSans-Regular';
+            context.fillStyle = '#ffffff';
+            context.fillText(message.author.username, 100, 45, 200, 250);
+            context.fillText(user.username, 400, 45, 200, 250);
+
+
+            context.font = '100px OpenSans-Regular';
+            context.fillStyle = '#FF00FF';
+            if (lovegen === '100') {
+                context.fillText(lovegen + '%', canvas.width / 3.3, canvas.height / 1.3);
+
+            } else {
+                context.fillText(lovegen + '%', canvas.width / 2.80, canvas.height / 1.3);
+
+            }
+            const user1 = await Canvas.loadImage(message.author.displayAvatarURL({ format: 'jpg' }));
+            const user2 = await Canvas.loadImage(user.displayAvatarURL({ format: 'jpg' }));
+
+            context.drawImage(user1, 0, 60, 200, 250);
+            context.drawImage(user2, 500, 60, 200, 250);
+
+            lovedb.set(message.author.id + '.' + user.id, lovegen);
+
+            const loveattachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png');
+
+
+
+            message.inlineReply(`درصد علاقه ${message.author} به ${user}`, loveattachment)
 
         }
-        const user1 = await Canvas.loadImage(message.author.displayAvatarURL({ format: 'jpg' }));
-        const user2 = await Canvas.loadImage(user.displayAvatarURL({ format: 'jpg' }));
 
-        context.drawImage(user1, 0, 60, 200, 250);
-        context.drawImage(user2, 500, 60, 200, 250);
 
-        const loveattachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png');
-
-        let loveEmbed = new Discord.MessageEmbed()
-            .setColor(data.love.color)
-            .setThumbnail(pic)
-            .setTitle(data.love.title)
-            .setDescription(`درصد علاقه ${message.author} به ${person}`)
-
-        message.inlineReply(`درصد علاقه ${message.author} به ${person}`, loveattachment)
         client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'love triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
     }
 
