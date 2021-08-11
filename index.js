@@ -403,7 +403,7 @@ client.on("message", async message => {
         let chmsg = new Discord.MessageEmbed()
             .setTitle(' 🤔 ' + soalq.soal + ' 🤔 ')
             .setColor(data.td.truth.color)
-            .setDescription('**||' + soalq.javab + '||**')
+            .setDescription('👇 برای دیدن جواب روی حالت مشکی کلیک کنید 👇 \n**||' + soalq.javab + '||**')
         message.inlineReply(chmsg)
         client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'chistan triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
     }
