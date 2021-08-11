@@ -221,7 +221,7 @@ client.on("message", async message => {
         const statsmsg = new Discord.MessageEmbed()
             .setTitle(data.stats.tite)
             .setDescription(
-                `\n\n\`${client.guilds.cache.size} : تعداد سرور ها\`<:servers:875071118107619339>\n\n\`${client.users.cache.size} : تعداد کاربران\`<:users:875070999660490812>\n\n\`${client.channels.cache.size} : تعداد چنل ها\`<:channels:875071030908055633>\n\n\`حالت :${client.user.presence.status}\`<:status:875071081088704543>\n\n\`${Math.round(client.ws.ping)} : پینگ\`<:ping:875071055520231485>\n\n\`${config.VER} : ورژن\`<:version:875070975560003595>`
+                `\n\n\`${client.guilds.cache.size} : تعداد سرور ها\`<:servers:875071118107619339>\n\n\`${client.users.cache.size} : تعداد کاربران\`<:users:875070999660490812>\n\n\`${client.channels.cache.size} : تعداد چنل ها\`<:channels:875071030908055633>\n\n\`حالت : ${client.user.presence.status}\`<:status:875071081088704543>\n\n\`${Math.round(client.ws.ping)} : پینگ\`<:ping:875071055520231485>\n\n\`${config.VER} : ورژن\`<:version:875070975560003595>`
             )
             .setThumbnail(client.user.displayAvatarURL({ size: 2048 }))
             .setColor('GREEN')
