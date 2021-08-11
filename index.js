@@ -217,21 +217,15 @@ client.on("message", async message => {
 
     // ------------------------- STATS -------------------------
     if (message.content === `${config.PREFIX}stats`) {
-        var statsmsg = new Discord.MessageEmbed()
+
+        const statsmsg = new Discord.MessageEmbed()
             .setTitle(data.stats.tite)
-            .setDescription('تعداد سرور ها :\n' +
-                '```\n' + client.guilds.cache.size + '\n```\n'
-                + 'تعداد کاربران :\n' +
-                '```\n' + client.users.cache.size + '\n```\n'
-                + 'تعداد چنل ها : \n' +
-                '```\n' + client.channels.cache.size + '\n```\n'
-                + 'حالت :\n' +
-                '```\n' + client.user.presence.status + '\n```\n'
-                + 'پینگ :\n' +
-                '```\n' + Math.round(client.ws.ping) + '\n```\n'
-                + 'ورژن :\n' +
-                '```\n' + config.VER + '\n```\n')
+            .setDescription(
+                `**<:sosis:875054520382685205> Sosis Bot Situation :**\n\n\`${client.guilds.cache.size} : تعداد سرور ها\`<:servers:875071118107619339>\n\n\`${client.users.cache.size} : تعداد کاربران\`<:users:875070999660490812>\n\n\`${client.channels.cache.size} : تعداد چنل ها\`<:channels:875071030908055633>\n\n\`${client.user.presence.status} : حالت\`<:status:875071081088704543>\n\n\`${Math.round(client.ws.ping)} : پینگ\`<:ping:875071055520231485>\n\n\`${config.VER} : ورژن\`<:version:875070975560003595>`
+            )
+            .setThumbnail(client.user.displayAvatarURL({ size: 2048 }))
             .setColor('GREEN')
+
         message.inlineReply(statsmsg)
         client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'stats triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
     }
