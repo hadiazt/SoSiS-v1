@@ -16,6 +16,7 @@ const lovedb = new Database('./data/love.json');
 var data = require('./data/msg.json')
 var game = require('./data/t&d.json');
 var config = require('./data/config.json')
+var photo = require('./data/pic.json')
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
@@ -188,7 +189,7 @@ client.on("message", async message => {
             .setTitle("SoSiS Bot Help Panel:")
             .setThumbnail(client.user.displayAvatarURL({ size: 2048 }))
             .setColor('GREEN')
-            .setDescription(`<a:general:874679569616089108> **General Commands:**\n<:space:874678195843125278><:simp:874692273022066699> ${config.PREFIX}simp\n<:space:874678195843125278><a:jazab:874682299231404032> ${config.PREFIX}jazab\n<:space:874678195843125278><:love:874682750332969040> ${config.PREFIX}love [mention]\n<:space:874678195843125278><:truth:874683750137626625> ${config.PREFIX}truth\n<:space:874678195843125278><a:dare:874683807884804148> ${config.PREFIX}dare\n<:space:874678195843125278><:afk:874684531880390768> ${config.PREFIX}afk\n<:space:874678195843125278><:bite:874685539289296997> ${config.PREFIX}bite [mention]\n<:space:874678195843125278><:kill:874686143172599859> ${config.PREFIX}kill [mention]\n<:space:874678195843125278><:lick:874681150340227154> ${config.PREFIX}lick [mention]\n<:space:874678195843125278><a:punchh:874687568002813952> ${config.PREFIX}punch [mention]\n<:space:874678195843125278><a:patt:874693813417955379> ${config.PREFIX}pat [mention]\n<:space:874678195843125278><a:lavat:874689704757432430> ${config.PREFIX}lavat [mention]\n<:space:874678195843125278><:hug:874693914521636955> ${config.PREFIX}hug [mention]\n<:space:874678195843125278><a:spank:874694559890812999> ${config.PREFIX}spank [mention]\n<:space:874678195843125278><a:tickle:874695368590372896> ${config.PREFIX}tickle [mention]\n<:space:874678195843125278><:roll:874697669795262554> ${config.PREFIX}roll\n<:space:874678195843125278><:think:875035014729961482> ${config.PREFIX}chistan\n\n<:i_:787598077875716096> **Info & Support Commands**:\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}invite\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}stats\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}report\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}support`);
+            .setDescription(`<a:general:874679569616089108> **General Commands:**\n<:space:874678195843125278><:simp:874692273022066699> ${config.PREFIX}simp\n<:space:874678195843125278><a:jazab:874682299231404032> ${config.PREFIX}jazab\n<:space:874678195843125278><:love:874682750332969040> ${config.PREFIX}love [mention]\n<:space:874678195843125278><:truth:874683750137626625> ${config.PREFIX}truth\n<:space:874678195843125278><a:dare:874683807884804148> ${config.PREFIX}dare\n<:space:874678195843125278><:afk:874684531880390768> ${config.PREFIX}afk\n<:space:874678195843125278><:bite:874685539289296997> ${config.PREFIX}bite [mention]\n<:space:874678195843125278><:kill:874686143172599859> ${config.PREFIX}kill [mention]\n<:space:874678195843125278><:lick:874681150340227154> ${config.PREFIX}lick [mention]\n<:space:874678195843125278><a:punchh:874687568002813952> ${config.PREFIX}punch [mention]\n<:space:874678195843125278><a:patt:874693813417955379> ${config.PREFIX}pat [mention]\n<:space:874678195843125278><a:lavat:874689704757432430> ${config.PREFIX}lavat [mention]\n<:space:874678195843125278><:hug:874693914521636955> ${config.PREFIX}hug [mention]\n<:space:874678195843125278><a:spank:874694559890812999> ${config.PREFIX}spank [mention]\n<:space:874678195843125278><a:tickle:874695368590372896> ${config.PREFIX}tickle [mention]\n<:space:874678195843125278><:roll:874697669795262554> ${config.PREFIX}roll\n<:space:874678195843125278><:think:875035014729961482> ${config.PREFIX}chistan\n<:space:874678195843125278>📷 ${config.PREFIX}profile\n\n<:i_:787598077875716096> **Info & Support Commands**:\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}invite\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}stats\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}report\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}support`);
 
         message.inlineReply(helpembed)
         client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'help triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
@@ -278,6 +279,88 @@ client.on("message", async message => {
             .setColor(data.jazab.color)
         message.inlineReply(jazabmsg)
         client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'jazab triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
+    }
+
+    // ------------------------- PROFILE -------------------------
+    const profileargs = message.content.slice(config.PREFIX.length).trim().split(' ');
+    const profilecommand = profileargs.shift().toLowerCase();
+
+    if (profilecommand === 'profile') {
+        if (!profileargs.length) {
+            var profilehelp = new Discord.MessageEmbed()
+                .setTitle(data.profile.helptitle)
+                .addFields(
+                    { name: 'egirl', inline: true },
+                    { name: 'eboy', inline: true },
+                    { name: 'couple', inline: true },
+                    { name: 'landscape', inline: true },
+                    { name: 'anime', inline: true },
+                    { name: 'boy', inline: true },
+                    { name: 'girl', inline: true },
+                    { name: 'animal', inline: true },
+                )
+            return message.inlineReply(profilehelp)
+        }
+        if (profileargs[0] === 'egirl') {
+            var egpic = photo.egirl[Math.floor(Math.random() * photo.egirl.length)];
+            var profilemsg = new Discord.MessageEmbed()
+                .setTitle('پروفایل درخواستی شما')
+                .setColor('GREEN')
+                .setImage(egpic)
+        }
+        if (profileargs[0] === 'eboy') {
+            var ebpic = photo.eboy[Math.floor(Math.random() * photo.eboy.length)];
+            var profilemsg = new Discord.MessageEmbed()
+                .setTitle('پروفایل درخواستی شما')
+                .setColor('GREEN')
+                .setImage(ebpic)
+        }
+        if (profileargs[0] === 'couple') {
+            var couplepic = photo.couple[Math.floor(Math.random() * photo.couple.length)];
+            var profilemsg = new Discord.MessageEmbed()
+                .setTitle('پروفایل درخواستی شما')
+                .setColor('GREEN')
+                .setImage(couplepic)
+        }
+        if (profileargs[0] === 'landscape') {
+            var lpic = photo.landscape[Math.floor(Math.random() * photo.landscape.length)];
+            var profilemsg = new Discord.MessageEmbed()
+                .setTitle('پروفایل درخواستی شما')
+                .setColor('GREEN')
+                .setImage(lpic)
+        }
+        if (profileargs[0] === 'anime') {
+            var animepic = photo.anime[Math.floor(Math.random() * photo.anime.length)];
+            var profilemsg = new Discord.MessageEmbed()
+                .setTitle('پروفایل درخواستی شما')
+                .setColor('GREEN')
+                .setImage(animepic)
+        }
+        if (profileargs[0] === 'boy') {
+            var bpic = photo.boy[Math.floor(Math.random() * photo.boy.length)];
+            var profilemsg = new Discord.MessageEmbed()
+                .setTitle('پروفایل درخواستی شما')
+                .setColor('GREEN')
+                .setImage(bpic)
+        }
+        if (profileargs[0] === 'girl') {
+            var gpic = photo.girl[Math.floor(Math.random() * photo.girl.length)];
+            var profilemsg = new Discord.MessageEmbed()
+                .setTitle('پروفایل درخواستی شما')
+                .setColor('GREEN')
+                .setImage(gpic)
+        }
+        if (profileargs[0] === 'animal') {
+            var apic = photo.animal[Math.floor(Math.random() * photo.animal.length)];
+            var profilemsg = new Discord.MessageEmbed()
+                .setTitle('پروفایل درخواستی شما')
+                .setColor('GREEN')
+                .setImage(apic)
+        }
+
+
+        message.inlineReply(profilemsg)
+        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'profile triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
     }
 
     // ------------------------- LOVE -------------------------
