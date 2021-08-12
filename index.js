@@ -290,14 +290,14 @@ client.on("message", async message => {
             var profilehelp = new Discord.MessageEmbed()
                 .setTitle(data.profile.helptitle)
                 .addFields(
-                    { name: 'egirl', inline: true },
-                    { name: 'eboy', inline: true },
-                    { name: 'couple', inline: true },
-                    { name: 'landscape', inline: true },
-                    { name: 'anime', inline: true },
-                    { name: 'boy', inline: true },
-                    { name: 'girl', inline: true },
-                    { name: 'animal', inline: true },
+                    { name: 'egirl', value: ' ‌', inline: true },
+                    { name: 'eboy', value: ' ‌', inline: true },
+                    { name: 'couple', value: ' ‌', inline: true },
+                    { name: 'landscape', value: ' ‌', inline: true },
+                    { name: 'anime', value: ' ‌', inline: true },
+                    { name: 'boy', value: ' ‌', inline: true },
+                    { name: 'girl', value: ' ‌', inline: true },
+                    { name: 'animal', value: ' ‌', inline: true },
                 )
             return message.inlineReply(profilehelp)
         }
