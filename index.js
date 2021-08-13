@@ -45,12 +45,12 @@ var photo = require('./data/pic.json')
 
 client.on('ready', () => {
 
-  // setInterval(() => {
+  setInterval(() => {
 
   var icons = client.guilds.cache.map(guild => guild.iconURL({ size: 2048, dynamic: true })) 
   servericons.set('Icons', icons)
 
-  // }, 300000);
+  }, 300000);
 
 
 

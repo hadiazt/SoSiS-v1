@@ -1,14 +1,13 @@
+$.getJSON("https://sosis.hadiazari.repl.co/server-icon.json", function (json) {
+// console.log(json);
 
+  json.Icons.map((v, i) => {
 
-// $.getJSON("https://sosis.hadiazari.repl.co/api.json", function (json) {
-// // console.log(json);
+    console.log(v);
+    var user = '<div class="card-user"><img class="img" src=' + v + '></br></div>';
 
-//   json.Guilds.map((v, i) => {
+    $(user).appendTo(CIELO);
 
-//     console.log(v);
-//     // var user = '<div class="card-user"><img class="img" src=' + v.avatar + '></br>' + v.username + '</div>';
+  });
 
-//     // $(user).appendTo(CIELO);
-
-//   });
-// });
+})
