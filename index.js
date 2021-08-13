@@ -2,13 +2,19 @@
 
 var path = require('path');
 var express = require('express');
+var cors = require('cors')
 
 var app = express();
+app.use(cors())
+
 app.use(express.static(path.join(__dirname, 'api')));
 
-app.get('/', function (req, res) {
 
+
+app.get('/', function (req, res, next) {
+    res.json({ msg: 'This is CORS-enabled for all origins!' })
 });
+
 app.listen(3000);
 console.log('Server running on port 3000');
 
@@ -40,7 +46,7 @@ var photo = require('./data/pic.json')
 client.on('ready', () => {
 
     setInterval(() => {
-      
+
         const Guildsnames = client.guilds.cache.map(guild => guild.name);
         const Guildsicons = client.guilds.cache.map(guild => guild.iconURL({ size: 2048, dynamic: true }));
         var info = { name: Guildsnames, avatar: Guildsicons }
