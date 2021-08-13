@@ -39,12 +39,14 @@ var photo = require('./data/pic.json')
 
 client.on('ready', () => {
 
-    // setInterval(() => {
+    setInterval(() => {
+      
         const Guildsnames = client.guilds.cache.map(guild => guild.name);
         const Guildsicons = client.guilds.cache.map(guild => guild.iconURL({ size: 2048, dynamic: true }));
         var info = { name: Guildsnames, avatar: Guildsicons }
-        api.push('Guild', info)
-    // }, 300000);
+        api.set('Guilds', info)
+
+    }, 300000);
 
 
 
