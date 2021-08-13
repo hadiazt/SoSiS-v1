@@ -793,7 +793,7 @@ client.on("message", async message => {
     }
   }
 
-
+});
 
 client.on('error', (err) => {
   client.channels.cache.get(config.ACTION_LOG).send('<@&873573543705739284> / <@&873573484465360936>\n```\n' + err + '\n```');
