@@ -1,3 +1,19 @@
+// =============== Port ===============
+
+var path = require('path');
+var express = require('express');
+
+var app = express();
+app.use(express.static(path.join(__dirname, 'api')));
+
+app.get('/', function (req, res) {
+
+});
+app.listen(3000);
+console.log('Server running on port 3000');
+
+// =============== Bot ===============
+
 const Discord = require('discord.js');
 require("./ExtendedMessage");
 const client = new Discord.Client({ allowedMentions: { repliedUser: true } });
@@ -13,6 +29,7 @@ const minigame = new Database('./data/t&d.json')
 var settings = new Database('./data/config.json')
 const afkdb = new Database('./data/afk.json')
 const lovedb = new Database('./data/love.json');
+var api = new Database('./api/servers.json');
 
 // برای گرفتن اطلاعات از دیتابیس
 var data = require('./data/msg.json')
@@ -327,7 +344,8 @@ client.on("message", async message => {
             var profilehelp = new Discord.MessageEmbed()
                 .setTitle(data.profile.helptitle)
                 .setDescription(`<a:cameraa:875411271250481233> **Profile Commands:**\n<:space:874678195843125278><:e1:875415555841077268> ${config.PREFIX}profile egirl\n<:space:874678195843125278><:e2:875416681474850866> ${config.PREFIX}profile eboy\n<:space:874678195843125278><a:couplee:875418191067775047> ${config.PREFIX}profile couple\n<:space:874678195843125278><a:landscape:875418222558597230> ${config.PREFIX}profile landscape\n<:space:874678195843125278><:animee:875419748542869624> ${config.PREFIX}profile anime\n<:space:874678195843125278><a:boyy:875419154524569630> ${config.PREFIX}profile boy\n<:space:874678195843125278><a:girll:875420525751582781> ${config.PREFIX}profile girl\n<:space:874678195843125278><:animal:875420910776090675> ${config.PREFIX}profile animal`);
-            return message.inlineReply(profilehelp);        }
+            return message.inlineReply(profilehelp);
+        }
         if (profileargs[0] === 'egirl') {
             var egpic = photo.egirl[Math.floor(Math.random() * photo.egirl.length)];
             var profilemsg = new Discord.MessageEmbed()
