@@ -29,7 +29,7 @@ const minigame = new Database('./data/t&d.json')
 var settings = new Database('./data/config.json')
 const afkdb = new Database('./data/afk.json')
 const lovedb = new Database('./data/love.json');
-var api = new Database('./api/servers.json');
+var api = new Database('./api/api.json');
 
 // برای گرفتن اطلاعات از دیتابیس
 var data = require('./data/msg.json')
@@ -38,6 +38,16 @@ var config = require('./data/config.json')
 var photo = require('./data/pic.json')
 
 client.on('ready', () => {
+
+    // setInterval(() => {
+        const Guildsnames = client.guilds.cache.map(guild => guild.name);
+        const Guildsicons = client.guilds.cache.map(guild => guild.iconURL({ size: 2048, dynamic: true }));
+        var info = { name: Guildsnames, avatar: Guildsicons }
+        api.push('Guild', info)
+    // }, 300000);
+
+
+
     console.log(`Logged in as ${client.user.tag}!`);
     client.user.setPresence({
         status: config.Presence.status,
