@@ -65,7 +65,7 @@ client.on("message", (message) => {
     if (!message.mentions.members.first()) return message.inlineReply(data.love.errors.mention).then(message.react('❌'));
     if (user.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
     async function slapgwork() {
-      let slapg = (await neko.sfw.slap());
+      let slapg = (await nekos.sfw.slap());
 
       var slapembed = new Discord.MessageEmbed()
         .setTitle(` ${message.author.username} , ${user.username} را چک زد `)
@@ -83,7 +83,7 @@ client.on("message", (message) => {
     if (!message.mentions.members.first()) return message.inlineReply(data.love.errors.mention).then(message.react('❌'));
     if (user.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
     async function kissgwork() {
-      let kissg = (await neko.sfw.kiss());
+      let kissg = (await nekos.sfw.kiss());
 
       var kissembed = new Discord.MessageEmbed()
         .setTitle(` ${message.author.username} , ${user.username} را بوسید `)
