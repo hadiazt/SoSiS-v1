@@ -5,7 +5,7 @@ const Canvas = require('canvas');
 Canvas.registerFont('./font/OpenSans-ExtraBoldItalic.ttf', { family: 'OpenSans-Regular' })
 const rga = require("random-gif-api")
 const gif = require('nekos.life');
-const neko = new gif();
+const nekos = new gif();
 const { Database } = require('beta.db')
 
 // برای وارد کردن اطلاعات به دیتابیس
