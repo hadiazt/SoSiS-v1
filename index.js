@@ -35,7 +35,7 @@ client.on('ready', () => {
 });
 
 
-client.on("guildCreate", async function(guild) {
+client.on("guildCreate", async function (guild) {
 
   let JoinEmbed = new Discord.MessageEmbed()
     .setDescription(data.join.msg)
@@ -214,167 +214,168 @@ client.on("message", (message) => {
     client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'spank triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
   }
 
-// =============================== NSFW ===============================
+  // =============================== NSFW ===============================
 
-const nsfwargs = message.content.slice(config.PREFIX.length).trim().split(' ');
-const nsfwcommand = nsfwargs.shift().toLowerCase();
+  const nsfwargs = message.content.slice(config.PREFIX.length).trim().split(' ');
+  const nsfwcommand = nsfwargs.shift().toLowerCase();
 
-if (nsfwcommand === 'nsfw') {
+  if (nsfwcommand === 'nsfw') {
     if (!message.channel.nsfw) {
-        return message.inlineReply('این دستور تنها در چنل nsfw فعال است')
+      return message.inlineReply('این دستور تنها در چنل nsfw فعال است')
     }
     if (!nsfwargs.length) {
-        const nsfw = new Discord.MessageEmbed()
-            .setTitle("NFSW Commands Help:")
-            .setColor('GREEN')
-            .setDescription(
-                `<a:cameraa:875411271250481233> **NFSW Commands:**\n\n<:space:874678195843125278><a:Hentai:875708876765425685> +hentai\n<:space:874678195843125278><:neko:875708740395991041> +neko\n<:space:874678195843125278><:lesbian:875709227849625610> +lesbian\n<:space:874678195843125278><:cumsluts:875712333115170867> +cumsluts\n<:space:874678195843125278><a:classic:875718983544881174>  +classic\n<:space:874678195843125278><a:boobs:875720764106620999> +boobs\n<:space:874678195843125278><:analll:875724354510532609> +anal\n<:space:874678195843125278><a:titss:875745746543054909> +tits\n<:space:874678195843125278><:trap:875747569509208104> +trap\n<:space:874678195843125278><:girlsolo:875748714025721876> +girlsolo\n<:space:874678195843125278><:feettt:875749858143789177> +feet\n<:space:874678195843125278><:erofeet:875750351922405417> +erofeet\n<:space:874678195843125278><a:blowjob:875754750111547422> +blowJob`
-            );
-        return message.inlineReply(nsfw);
+      const nsfw = new Discord.MessageEmbed()
+        .setTitle("NFSW Commands Help:")
+        .setColor('GREEN')
+        .setDescription(
+          `<a:cameraa:875411271250481233> **NFSW Commands:**\n\n<:space:874678195843125278><a:Hentai:875708876765425685> ${config.PREFIX}nsfw hentai\n<:space:874678195843125278><:neko:875708740395991041> ${config.PREFIX}nsfw neko\n<:space:874678195843125278><:lesbian:875709227849625610> ${config.PREFIX}nsfw lesbian\n<:space:874678195843125278><:cumsluts:875712333115170867> ${config.PREFIX}nsfw cumsluts\n<:space:874678195843125278><a:classic:875718983544881174>  ${config.PREFIX}nsfw classic\n<:space:874678195843125278><a:boobs:875720764106620999> ${config.PREFIX}nsfw boobs\n<:space:874678195843125278><:analll:875724354510532609> ${config.PREFIX}nsfw anal\n<:space:874678195843125278><a:titss:875745746543054909> ${config.PREFIX}nsfw tits\n<:space:874678195843125278><:trap:875747569509208104> ${config.PREFIX}nsfw trap\n<:space:874678195843125278><:girlsolo:875748714025721876> ${config.PREFIX}nsfw girlsolo\n<:space:874678195843125278><:feettt:875749858143789177> ${config.PREFIX}nsfw feet\n<:space:874678195843125278><:erofeet:875750351922405417> ${config.PREFIX}nsfw erofeet\n<:space:874678195843125278><a:blowjob:875754750111547422> ${config.PREFIX}nsfw blowJob`
+        );
+      return message.inlineReply(nsfw);
     }
     if (nsfwargs[0] === 'hentai') {
-        async function hentai() {
-            var x = await nekos.nsfw.hentai()
-            var msg = new Discord.MessageEmbed()
-                .setTitle('Random Hentai')
-                .setImage(x.url)
-            message.inlineReply(msg)
-        }
-        hentai()
+      async function hentai() {
+        var x = await nekos.nsfw.hentai()
+        var msg = new Discord.MessageEmbed()
+          .setTitle('Random Hentai')
+          .setImage(x.url)
+        message.inlineReply(msg)
+      }
+      hentai()
     }
     if (nsfwargs[0] === 'pussy') {
-        async function pussy() {
-            var x = await nekos.nsfw.pussy()
-            var msg = new Discord.MessageEmbed()
-                .setTitle('Random Pussy')
-                .setImage(x.url)
-            message.inlineReply(msg)
-        }
-        pussy()
+      async function pussy() {
+        var x = await nekos.nsfw.pussy()
+        var msg = new Discord.MessageEmbed()
+          .setTitle('Random Pussy')
+          .setImage(x.url)
+        message.inlineReply(msg)
+      }
+      pussy()
     }
     if (nsfwargs[0] === 'neko') {
-        async function neko() {
-            var x = await nekos.nsfw.neko()
-            var msg = new Discord.MessageEmbed()
-                .setTitle('Random Neko')
-                .setImage(x.url)
-            message.inlineReply(msg)
-        }
-        neko()
+      async function neko() {
+        var x = await nekos.nsfw.neko()
+        var msg = new Discord.MessageEmbed()
+          .setTitle('Random Neko')
+          .setImage(x.url)
+        message.inlineReply(msg)
+      }
+      neko()
     }
     if (nsfwargs[0] === 'lesbian') {
-        async function lesbian() {
-            var x = await nekos.nsfw.lesbian()
-            var msg = new Discord.MessageEmbed()
-                .setTitle('Random Lesbian')
-                .setImage(x.url)
-            message.inlineReply(msg)
-        }
-        lesbian()
+      async function lesbian() {
+        var x = await nekos.nsfw.lesbian()
+        var msg = new Discord.MessageEmbed()
+          .setTitle('Random Lesbian')
+          .setImage(x.url)
+        message.inlineReply(msg)
+      }
+      lesbian()
     }
     if (nsfwargs[0] === 'cumsluts') {
-        async function cumsluts() {
-            var x = await nekos.nsfw.cumsluts()
-            var msg = new Discord.MessageEmbed()
-                .setTitle('Random Cumsluts')
-                .setImage(x.url)
-            message.inlineReply(msg)
-        }
-        cumsluts()
+      async function cumsluts() {
+        var x = await nekos.nsfw.cumsluts()
+        var msg = new Discord.MessageEmbed()
+          .setTitle('Random Cumsluts')
+          .setImage(x.url)
+        message.inlineReply(msg)
+      }
+      cumsluts()
     }
     if (nsfwargs[0] === 'boobs') {
-        async function boobs() {
-            var x = await nekos.nsfw.boobs()
-            var msg = new Discord.MessageEmbed()
-                .setTitle('Random Boobs')
-                .setImage(x.url)
-            message.inlineReply(msg)
-        }
-        boobs()
+      async function boobs() {
+        var x = await nekos.nsfw.boobs()
+        var msg = new Discord.MessageEmbed()
+          .setTitle('Random Boobs')
+          .setImage(x.url)
+        message.inlineReply(msg)
+      }
+      boobs()
     }
     if (nsfwargs[0] === 'anal') {
-        async function anal() {
-            var x = await nekos.nsfw.anal()
-            var msg = new Discord.MessageEmbed()
-                .setTitle('Random Anal')
-                .setImage(x.url)
-            message.inlineReply(msg)
-        }
-        anal()
+      async function anal() {
+        var x = await nekos.nsfw.anal()
+        var msg = new Discord.MessageEmbed()
+          .setTitle('Random Anal')
+          .setImage(x.url)
+        message.inlineReply(msg)
+      }
+      anal()
     }
     if (nsfwargs[0] === 'tits') {
-        async function tits() {
-            var x = await nekos.nsfw.tits()
-            var msg = new Discord.MessageEmbed()
-                .setTitle('Random Tits')
-                .setImage(x.url)
-            message.inlineReply(msg)
-        }
-        tits()
+      async function tits() {
+        var x = await nekos.nsfw.tits()
+        var msg = new Discord.MessageEmbed()
+          .setTitle('Random Tits')
+          .setImage(x.url)
+        message.inlineReply(msg)
+      }
+      tits()
     }
     if (nsfwargs[0] === 'trap') {
-        async function trap() {
-            var x = await nekos.nsfw.trap()
-            var msg = new Discord.MessageEmbed()
-                .setTitle('Random Trap')
-                .setImage(x.url)
-            message.inlineReply(msg)
-        }
-        trap()
+      async function trap() {
+        var x = await nekos.nsfw.trap()
+        var msg = new Discord.MessageEmbed()
+          .setTitle('Random Trap')
+          .setImage(x.url)
+        message.inlineReply(msg)
+      }
+      trap()
     }
     if (nsfwargs[0] === 'girlsolo') {
-        async function girlSolo() {
-            var x = await nekos.nsfw.girlSolo()
-            var msg = new Discord.MessageEmbed()
-                .setTitle('Random GirlSolo')
-                .setImage(x.url)
-            message.inlineReply(msg)
-        }
-        girlSolo()
+      async function girlSolo() {
+        var x = await nekos.nsfw.girlSolo()
+        var msg = new Discord.MessageEmbed()
+          .setTitle('Random GirlSolo')
+          .setImage(x.url)
+        message.inlineReply(msg)
+      }
+      girlSolo()
     }
     if (nsfwargs[0] === 'feet') {
-        async function feet() {
-            var x = await nekos.nsfw.feet()
-            var msg = new Discord.MessageEmbed()
-                .setTitle('Random Feet')
-                .setImage(x.url)
-            message.inlineReply(msg)
-        }
-        feet()
+      async function feet() {
+        var x = await nekos.nsfw.feet()
+        var msg = new Discord.MessageEmbed()
+          .setTitle('Random Feet')
+          .setImage(x.url)
+        message.inlineReply(msg)
+      }
+      feet()
     }
     if (nsfwargs[0] === 'erofeet') {
-        async function eroFeet() {
-            var x = await nekos.nsfw.eroFeet()
-            var msg = new Discord.MessageEmbed()
-                .setTitle('Random EroFeet')
-                .setImage(x.url)
-            message.inlineReply(msg)
-        }
-        eroFeet()
+      async function eroFeet() {
+        var x = await nekos.nsfw.eroFeet()
+        var msg = new Discord.MessageEmbed()
+          .setTitle('Random EroFeet')
+          .setImage(x.url)
+        message.inlineReply(msg)
+      }
+      eroFeet()
     }
 
     if (nsfwargs[0] === 'blowjob') {
-        async function blowJob() {
-            var x = await nekos.nsfw.blowJob()
-            var msg = new Discord.MessageEmbed()
-                .setTitle('Random BlowJob')
-                .setImage(x.url)
-            message.inlineReply(msg)
-        }
-        blowJob()
+      async function blowJob() {
+        var x = await nekos.nsfw.blowJob()
+        var msg = new Discord.MessageEmbed()
+          .setTitle('Random BlowJob')
+          .setImage(x.url)
+        message.inlineReply(msg)
+      }
+      blowJob()
     }
     if (nsfwargs[0] === 'feetgif') {
-        async function feetGif() {
-            var x = await nekos.nsfw.feetGif()
-            var msg = new Discord.MessageEmbed()
-                .setTitle('Random FeetGif')
-                .setImage(x.url)
-            message.inlineReply(msg)
-        }
-        feetGif()
+      async function feetGif() {
+        var x = await nekos.nsfw.feetGif()
+        var msg = new Discord.MessageEmbed()
+          .setTitle('Random FeetGif')
+          .setImage(x.url)
+        message.inlineReply(msg)
+      }
+      feetGif()
     }
+    client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'nsfw triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
 
-}
+  }
 
 })
 
