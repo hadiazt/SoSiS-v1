@@ -8,6 +8,7 @@
   "dependencies": {
     "beta.db": "^3.0.2",
     "canvas": "^2.8.0",
+    "cors": "^2.8.5",
     "discord.js": "^12.5.3",
     "express": "^4.17.1",
     "nekos.life": "^2.0.7",
