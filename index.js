@@ -214,7 +214,167 @@ client.on("message", (message) => {
     client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'spank triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
   }
 
+// =============================== NSFW ===============================
 
+const nsfwargs = message.content.slice(config.PREFIX.length).trim().split(' ');
+const nsfwcommand = nsfwargs.shift().toLowerCase();
+
+if (nsfwcommand === 'nsfw') {
+    if (!message.channel.nsfw) {
+        return message.inlineReply('این دستور تنها در چنل nsfw فعال است')
+    }
+    if (!nsfwargs.length) {
+        const nsfw = new Discord.MessageEmbed()
+            .setTitle("NFSW Commands Help:")
+            .setColor('GREEN')
+            .setDescription(
+                `<a:cameraa:875411271250481233> **NFSW Commands:**\n\n<:space:874678195843125278><a:Hentai:875708876765425685> +hentai\n<:space:874678195843125278><:neko:875708740395991041> +neko\n<:space:874678195843125278><:lesbian:875709227849625610> +lesbian\n<:space:874678195843125278><:cumsluts:875712333115170867> +cumsluts\n<:space:874678195843125278><a:classic:875718983544881174>  +classic\n<:space:874678195843125278><a:boobs:875720764106620999> +boobs\n<:space:874678195843125278><:analll:875724354510532609> +anal\n<:space:874678195843125278><a:titss:875745746543054909> +tits\n<:space:874678195843125278><:trap:875747569509208104> +trap\n<:space:874678195843125278><:girlsolo:875748714025721876> +girlsolo\n<:space:874678195843125278><:feettt:875749858143789177> +feet\n<:space:874678195843125278><:erofeet:875750351922405417> +erofeet\n<:space:874678195843125278><a:blowjob:875754750111547422> +blowJob`
+            );
+        return message.inlineReply(nsfw);
+    }
+    if (nsfwargs[0] === 'hentai') {
+        async function hentai() {
+            var x = await nekos.nsfw.hentai()
+            var msg = new Discord.MessageEmbed()
+                .setTitle('Random Hentai')
+                .setImage(x.url)
+            message.inlineReply(msg)
+        }
+        hentai()
+    }
+    if (nsfwargs[0] === 'pussy') {
+        async function pussy() {
+            var x = await nekos.nsfw.pussy()
+            var msg = new Discord.MessageEmbed()
+                .setTitle('Random Pussy')
+                .setImage(x.url)
+            message.inlineReply(msg)
+        }
+        pussy()
+    }
+    if (nsfwargs[0] === 'neko') {
+        async function neko() {
+            var x = await nekos.nsfw.neko()
+            var msg = new Discord.MessageEmbed()
+                .setTitle('Random Neko')
+                .setImage(x.url)
+            message.inlineReply(msg)
+        }
+        neko()
+    }
+    if (nsfwargs[0] === 'lesbian') {
+        async function lesbian() {
+            var x = await nekos.nsfw.lesbian()
+            var msg = new Discord.MessageEmbed()
+                .setTitle('Random Lesbian')
+                .setImage(x.url)
+            message.inlineReply(msg)
+        }
+        lesbian()
+    }
+    if (nsfwargs[0] === 'cumsluts') {
+        async function cumsluts() {
+            var x = await nekos.nsfw.cumsluts()
+            var msg = new Discord.MessageEmbed()
+                .setTitle('Random Cumsluts')
+                .setImage(x.url)
+            message.inlineReply(msg)
+        }
+        cumsluts()
+    }
+    if (nsfwargs[0] === 'boobs') {
+        async function boobs() {
+            var x = await nekos.nsfw.boobs()
+            var msg = new Discord.MessageEmbed()
+                .setTitle('Random Boobs')
+                .setImage(x.url)
+            message.inlineReply(msg)
+        }
+        boobs()
+    }
+    if (nsfwargs[0] === 'anal') {
+        async function anal() {
+            var x = await nekos.nsfw.anal()
+            var msg = new Discord.MessageEmbed()
+                .setTitle('Random Anal')
+                .setImage(x.url)
+            message.inlineReply(msg)
+        }
+        anal()
+    }
+    if (nsfwargs[0] === 'tits') {
+        async function tits() {
+            var x = await nekos.nsfw.tits()
+            var msg = new Discord.MessageEmbed()
+                .setTitle('Random Tits')
+                .setImage(x.url)
+            message.inlineReply(msg)
+        }
+        tits()
+    }
+    if (nsfwargs[0] === 'trap') {
+        async function trap() {
+            var x = await nekos.nsfw.trap()
+            var msg = new Discord.MessageEmbed()
+                .setTitle('Random Trap')
+                .setImage(x.url)
+            message.inlineReply(msg)
+        }
+        trap()
+    }
+    if (nsfwargs[0] === 'girlsolo') {
+        async function girlSolo() {
+            var x = await nekos.nsfw.girlSolo()
+            var msg = new Discord.MessageEmbed()
+                .setTitle('Random GirlSolo')
+                .setImage(x.url)
+            message.inlineReply(msg)
+        }
+        girlSolo()
+    }
+    if (nsfwargs[0] === 'feet') {
+        async function feet() {
+            var x = await nekos.nsfw.feet()
+            var msg = new Discord.MessageEmbed()
+                .setTitle('Random Feet')
+                .setImage(x.url)
+            message.inlineReply(msg)
+        }
+        feet()
+    }
+    if (nsfwargs[0] === 'erofeet') {
+        async function eroFeet() {
+            var x = await nekos.nsfw.eroFeet()
+            var msg = new Discord.MessageEmbed()
+                .setTitle('Random EroFeet')
+                .setImage(x.url)
+            message.inlineReply(msg)
+        }
+        eroFeet()
+    }
+
+    if (nsfwargs[0] === 'blowjob') {
+        async function blowJob() {
+            var x = await nekos.nsfw.blowJob()
+            var msg = new Discord.MessageEmbed()
+                .setTitle('Random BlowJob')
+                .setImage(x.url)
+            message.inlineReply(msg)
+        }
+        blowJob()
+    }
+    if (nsfwargs[0] === 'feetgif') {
+        async function feetGif() {
+            var x = await nekos.nsfw.feetGif()
+            var msg = new Discord.MessageEmbed()
+                .setTitle('Random FeetGif')
+                .setImage(x.url)
+            message.inlineReply(msg)
+        }
+        feetGif()
+    }
+
+}
 
 })
 
@@ -229,7 +389,7 @@ client.on("message", async message => {
       .setTitle("SoSiS Bot Help Panel:")
       .setThumbnail(client.user.displayAvatarURL({ size: 2048 }))
       .setColor('GREEN')
-      .setDescription(`<a:general:874679569616089108> **General Commands:**\n<:space:874678195843125278><:simp:874692273022066699> ${config.PREFIX}simp\n<:space:874678195843125278><a:jazab:874682299231404032> ${config.PREFIX}jazab\n<:space:874678195843125278><:love:874682750332969040> ${config.PREFIX}love [mention]\n<:space:874678195843125278><:truth:874683750137626625> ${config.PREFIX}truth\n<:space:874678195843125278><a:dare:874683807884804148> ${config.PREFIX}dare\n<:space:874678195843125278><:afk:874684531880390768> ${config.PREFIX}afk\n<:space:874678195843125278><:kiss:874686534064934933> ${config.PREFIX}kiss [mention]\n<:space:874678195843125278><a:slap:875641193864761354> ${config.PREFIX}slap [mention]\n<:space:874678195843125278><:bite:874685539289296997> ${config.PREFIX}bite [mention]\n<:space:874678195843125278><:kill:874686143172599859> ${config.PREFIX}kill [mention]\n<:space:874678195843125278><:lick:874681150340227154> ${config.PREFIX}lick [mention]\n<:space:874678195843125278><a:punchh:874687568002813952> ${config.PREFIX}punch [mention]\n<:space:874678195843125278><a:patt:874693813417955379> ${config.PREFIX}pat [mention]\n<:space:874678195843125278><a:lavat:874689704757432430> ${config.PREFIX}lavat [mention]\n<:space:874678195843125278><:hug:874693914521636955> ${config.PREFIX}hug [mention]\n<:space:874678195843125278><a:spank:874694559890812999> ${config.PREFIX}spank [mention]\n<:space:874678195843125278><a:tickle:874695368590372896> ${config.PREFIX}tickle [mention]\n<:space:874678195843125278><:roll:874697669795262554> ${config.PREFIX}roll\n<:space:874678195843125278><:think:875035014729961482> ${config.PREFIX}chistan\n<:space:874678195843125278><a:pf:875421949726167070> ${config.PREFIX}profile\n\n<:i_:787598077875716096> **Info & Support Commands**:\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}invite\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}stats\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}report\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}support`);
+      .setDescription(`<a:general:874679569616089108> **General Commands:**\n<:space:874678195843125278><:simp:874692273022066699> ${config.PREFIX}simp\n<:space:874678195843125278><a:jazab:874682299231404032> ${config.PREFIX}jazab\n<:space:874678195843125278><:love:874682750332969040> ${config.PREFIX}love [mention]\n<:space:874678195843125278><:truth:874683750137626625> ${config.PREFIX}truth\n<:space:874678195843125278><a:dare:874683807884804148> ${config.PREFIX}dare\n<:space:874678195843125278><:afk:874684531880390768> ${config.PREFIX}afk\n<:space:874678195843125278><:kiss:874686534064934933> ${config.PREFIX}kiss [mention]\n<:space:874678195843125278><a:slap:875641193864761354> ${config.PREFIX}slap [mention]\n<:space:874678195843125278><:bite:874685539289296997> ${config.PREFIX}bite [mention]\n<:space:874678195843125278><:kill:874686143172599859> ${config.PREFIX}kill [mention]\n<:space:874678195843125278><:lick:874681150340227154> ${config.PREFIX}lick [mention]\n<:space:874678195843125278><a:punchh:874687568002813952> ${config.PREFIX}punch [mention]\n<:space:874678195843125278><a:patt:874693813417955379> ${config.PREFIX}pat [mention]\n<:space:874678195843125278><a:lavat:874689704757432430> ${config.PREFIX}lavat [mention]\n<:space:874678195843125278><:hug:874693914521636955> ${config.PREFIX}hug [mention]\n<:space:874678195843125278><a:spank:874694559890812999> ${config.PREFIX}spank [mention]\n<:space:874678195843125278><a:tickle:874695368590372896> ${config.PREFIX}tickle [mention]\n<:space:874678195843125278><:roll:874697669795262554> ${config.PREFIX}roll\n<:space:874678195843125278><:think:875035014729961482> ${config.PREFIX}chistan\n<:space:874678195843125278><a:pf:875421949726167070> ${config.PREFIX}profile\n<:space:874678195843125278><:nsfw:875772028278435920> ${config.PREFIX}nsfw\n\n<:i_:787598077875716096> **Info & Support Commands**:\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}invite\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}stats\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}report\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}support`);
 
     message.inlineReply(helpembed)
     client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'help triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
