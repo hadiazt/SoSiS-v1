@@ -35,7 +35,8 @@ const minigame = new Database('./data/t&d.json')
 var settings = new Database('./data/config.json')
 const afkdb = new Database('./data/afk.json')
 const lovedb = new Database('./data/love.json');
-var api = new Database('./api/api.json');
+var servername = new Database('./api/server-name.json');
+var servericon = new Database('./api/server-icon.json');
 
 // برای گرفتن اطلاعات از دیتابیس
 var data = require('./data/msg.json')
@@ -45,14 +46,15 @@ var photo = require('./data/pic.json')
 
 client.on('ready', () => {
 
-    setInterval(() => {
+    // setInterval(() => {
 
         const Guildsnames = client.guilds.cache.map(guild => guild.name);
         const Guildsicons = client.guilds.cache.map(guild => guild.iconURL({ size: 2048, dynamic: true }));
-        var info = { name: Guildsnames, avatar: Guildsicons }
-        api.set('Guilds', info)
 
-    }, 300000);
+        servername.set('Guilds', Guildsnames)
+        servericon.set('Guilds', Guildsicons)
+
+    // }, 300000);
 
 
 
