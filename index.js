@@ -1,25 +1,3 @@
-// =============== Port ===============
-
-var path = require('path');
-var express = require('express');
-var cors = require('cors')
-
-var app = express();
-app.use(cors())
-
-app.use(express.static(path.join(__dirname, 'api')));
-
-
-
-app.get('/', function(req, res, next) {
-  res.json({ msg: 'This is CORS-enabled for all origins!' })
-});
-
-app.listen(3000);
-console.log('Server running on port 3000');
-
-// =============== Bot ===============
-
 const Discord = require('discord.js');
 require("./ExtendedMessage");
 const client = new Discord.Client({ allowedMentions: { repliedUser: true } });
