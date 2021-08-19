@@ -39,7 +39,7 @@ client.on('ready', () => {
 });
 
 
-client.on("guildCreate", async function (guild) {
+client.on("guildCreate", async function(guild) {
 
   let JoinEmbed = new Discord.MessageEmbed()
     .setDescription(data.join.msg)
@@ -472,7 +472,8 @@ client.on("message", async message => {
     } catch (e) {
       return message.inlineReply(`⛔ | چیزی برای لینک وارد شده یافت نشد`);
     }
-  }
+        client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'yt dn triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
+   }
 
   // ------------------------- AFK -------------------------
   const afkargs = message.content.slice(config.PREFIX.length).trim().split(' ');
