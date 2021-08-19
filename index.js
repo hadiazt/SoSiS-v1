@@ -380,43 +380,6 @@ client.on("message", (message) => {
     client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'nsfw triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
 
   }
-  // ------------------------- YT DOWNLOAD -------------------------
-
-  if (message.content.startsWith(confid.PREFIX + "dn")) {
-
-    let args = message.content.split(' ').slice(1);
-
-    if (!args[0]) return message.inlineReply(`⛔ | لطفا لینک یوتیوب را وارد کنید`);
-
-    let infos;
-    let stream;
-
-    try {
-      stream = YTDL(args.join(" "), { encoderArgs: ['-af', 'dynaudnorm=f=200'], fmt: 'mp3', opusEncoded: false });
-      infos = await ScrapeYt.search(args.join(" "));
-    } catch (e) {
-      return message.inlineReply(`⛔ | چیزی برای لینک وارد شده یافت نشد`);
-    }
-
-    try {
-      message.inlineReply(`:notes: |  پس از اتمام دانلود فایل مورد نظر ارسال میشود`);
-
-      stream.pipe(createWriteStream(__dirname + `/download/${message.author.id}.mp3`)).on('finish', () => {
-
-        try {
-          message.inlineReply(`🎵 | آهنگ درخواستی شما ${infos[0].title} `, new Discord.MessageAttachment(__dirname + `/download/${message.author.id}.mp3`, `${message.author.id}.mp3`))
-        } catch (e) {
-          return message.inlineReply(`⛔ |به دو دلیل ارسال فایل امکان پذیر نیست
-1) حجم فایل بیش از 8 مگابایت است 
-2) ربات دسترسی ارسال محتوا را در چنل/سرور ندارد
-`);
-        }
-
-      })
-    } catch (e) {
-      return message.inlineReply(`⛔ | چیزی برای لینک وارد شده یافت نشد`);
-    }
-  }
 
 })
 
@@ -471,6 +434,44 @@ client.on("message", async message => {
 
     message.inlineReply(statsmsg)
     client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'stats triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
+  }
+
+  // ------------------------- YT DOWNLOAD -------------------------
+
+  if (message.content.startsWith(confid.PREFIX + "dn")) {
+
+    let args = message.content.split(' ').slice(1);
+
+    if (!args[0]) return message.inlineReply(`⛔ | لطفا لینک یوتیوب را وارد کنید`);
+
+    let infos;
+    let stream;
+
+    try {
+      stream = YTDL(args.join(" "), { encoderArgs: ['-af', 'dynaudnorm=f=200'], fmt: 'mp3', opusEncoded: false });
+      infos = await ScrapeYt.search(args.join(" "));
+    } catch (e) {
+      return message.inlineReply(`⛔ | چیزی برای لینک وارد شده یافت نشد`);
+    }
+
+    try {
+      message.inlineReply(`:notes: |  پس از اتمام دانلود فایل مورد نظر ارسال میشود`);
+
+      stream.pipe(createWriteStream(__dirname + `/download/${message.author.id}.mp3`)).on('finish', () => {
+
+        try {
+          message.inlineReply(`🎵 | آهنگ درخواستی شما ${infos[0].title} `, new Discord.MessageAttachment(__dirname + `/download/${message.author.id}.mp3`, `${message.author.id}.mp3`))
+        } catch (e) {
+          return message.inlineReply(`⛔ |به دو دلیل ارسال فایل امکان پذیر نیست
+1) حجم فایل بیش از 8 مگابایت است 
+2) ربات دسترسی ارسال محتوا را در چنل/سرور ندارد
+`);
+        }
+
+      })
+    } catch (e) {
+      return message.inlineReply(`⛔ | چیزی برای لینک وارد شده یافت نشد`);
+    }
   }
 
   // ------------------------- AFK -------------------------
