@@ -6,6 +6,10 @@ Canvas.registerFont('./font/OpenSans-ExtraBoldItalic.ttf', { family: 'OpenSans-R
 const rga = require("random-gif-api")
 const gif = require('nekos.life');
 const nekos = new gif();
+const ScrapeYt = require("scrape-yt");
+const spotify = require("spotify-url-info");
+const YTDL = require("discord-ytdl-core");
+const { createWriteStream } = require("fs");
 const { Database } = require('beta.db')
 
 // برای وارد کردن اطلاعات به دیتابیس
@@ -376,6 +380,43 @@ client.on("message", (message) => {
     client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'nsfw triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
 
   }
+  // ------------------------- YT DOWNLOAD -------------------------
+
+  if (message.content.startsWith(confid.PREFIX + "dn")) {
+
+    let args = message.content.split(' ').slice(1);
+
+    if (!args[0]) return message.inlineReply(`⛔ | لطفا لینک یوتیوب را وارد کنید`);
+
+    let infos;
+    let stream;
+
+    try {
+      stream = YTDL(args.join(" "), { encoderArgs: ['-af', 'dynaudnorm=f=200'], fmt: 'mp3', opusEncoded: false });
+      infos = await ScrapeYt.search(args.join(" "));
+    } catch (e) {
+      return message.inlineReply(`⛔ | چیزی برای لینک وارد شده یافت نشد`);
+    }
+
+    try {
+      message.inlineReply(`:notes: |  پس از اتمام دانلود فایل مورد نظر ارسال میشود`);
+
+      stream.pipe(createWriteStream(__dirname + `/download/${message.author.id}.mp3`)).on('finish', () => {
+
+        try {
+          message.inlineReply(`🎵 | آهنگ درخواستی شما ${infos[0].title} `, new Discord.MessageAttachment(__dirname + `/download/${message.author.id}.mp3`, `${message.author.id}.mp3`))
+        } catch (e) {
+          return message.inlineReply(`⛔ |به دو دلیل ارسال فایل امکان پذیر نیست
+1) حجم فایل بیش از 8 مگابایت است 
+2) ربات دسترسی ارسال محتوا را در چنل/سرور ندارد
+`);
+        }
+
+      })
+    } catch (e) {
+      return message.inlineReply(`⛔ | چیزی برای لینک وارد شده یافت نشد`);
+    }
+  }
 
 })
 
@@ -390,7 +431,7 @@ client.on("message", async message => {
       .setTitle("SoSiS Bot Help Panel:")
       .setThumbnail(client.user.displayAvatarURL({ size: 2048 }))
       .setColor('GREEN')
-      .setDescription(`<a:general:874679569616089108> **General Commands:**\n<:space:874678195843125278><:simp:874692273022066699> ${config.PREFIX}simp\n<:space:874678195843125278><a:jazab:874682299231404032> ${config.PREFIX}jazab\n<:space:874678195843125278><:love:874682750332969040> ${config.PREFIX}love [mention]\n<:space:874678195843125278><:truth:874683750137626625> ${config.PREFIX}truth\n<:space:874678195843125278><a:dare:874683807884804148> ${config.PREFIX}dare\n<:space:874678195843125278><:afk:874684531880390768> ${config.PREFIX}afk\n<:space:874678195843125278><:kiss:874686534064934933> ${config.PREFIX}kiss [mention]\n<:space:874678195843125278><a:slap:875641193864761354> ${config.PREFIX}slap [mention]\n<:space:874678195843125278><:bite:874685539289296997> ${config.PREFIX}bite [mention]\n<:space:874678195843125278><:kill:874686143172599859> ${config.PREFIX}kill [mention]\n<:space:874678195843125278><:lick:874681150340227154> ${config.PREFIX}lick [mention]\n<:space:874678195843125278><a:punchh:874687568002813952> ${config.PREFIX}punch [mention]\n<:space:874678195843125278><a:patt:874693813417955379> ${config.PREFIX}pat [mention]\n<:space:874678195843125278><a:lavat:874689704757432430> ${config.PREFIX}lavat [mention]\n<:space:874678195843125278><:hug:874693914521636955> ${config.PREFIX}hug [mention]\n<:space:874678195843125278><a:spank:874694559890812999> ${config.PREFIX}spank [mention]\n<:space:874678195843125278><a:tickle:874695368590372896> ${config.PREFIX}tickle [mention]\n<:space:874678195843125278><:roll:874697669795262554> ${config.PREFIX}roll\n<:space:874678195843125278><:think:875035014729961482> ${config.PREFIX}chistan\n<:space:874678195843125278><a:pf:875421949726167070> ${config.PREFIX}profile\n<:space:874678195843125278><:nsfw:875772028278435920> ${config.PREFIX}nsfw\n\n<:i_:787598077875716096> **Info & Support Commands**:\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}invite\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}stats\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}report\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}support`);
+      .setDescription(`<a:general:874679569616089108> **General Commands:**\n<:space:874678195843125278><:simp:874692273022066699> ${config.PREFIX}simp\n<:space:874678195843125278><a:jazab:874682299231404032> ${config.PREFIX}jazab\n<:space:874678195843125278><:love:874682750332969040> ${config.PREFIX}love [mention]\n<:space:874678195843125278><:truth:874683750137626625> ${config.PREFIX}truth\n<:space:874678195843125278><a:dare:874683807884804148> ${config.PREFIX}dare\n<:space:874678195843125278><:afk:874684531880390768> ${config.PREFIX}afk\n<:space:874678195843125278><:kiss:874686534064934933> ${config.PREFIX}kiss [mention]\n<:space:874678195843125278><a:slap:875641193864761354> ${config.PREFIX}slap [mention]\n<:space:874678195843125278><:bite:874685539289296997> ${config.PREFIX}bite [mention]\n<:space:874678195843125278><:kill:874686143172599859> ${config.PREFIX}kill [mention]\n<:space:874678195843125278><:lick:874681150340227154> ${config.PREFIX}lick [mention]\n<:space:874678195843125278><a:punchh:874687568002813952> ${config.PREFIX}punch [mention]\n<:space:874678195843125278><a:patt:874693813417955379> ${config.PREFIX}pat [mention]\n<:space:874678195843125278><a:lavat:874689704757432430> ${config.PREFIX}lavat [mention]\n<:space:874678195843125278><:hug:874693914521636955> ${config.PREFIX}hug [mention]\n<:space:874678195843125278><a:spank:874694559890812999> ${config.PREFIX}spank [mention]\n<:space:874678195843125278><a:tickle:874695368590372896> ${config.PREFIX}tickle [mention]\n<:space:874678195843125278><:roll:874697669795262554> ${config.PREFIX}roll\n<:space:874678195843125278><:think:875035014729961482> ${config.PREFIX}chistan\n<:space:874678195843125278><a:pf:875421949726167070> ${config.PREFIX}profile\n<:space:874678195843125278><:nsfw:875772028278435920> ${config.PREFIX}nsfw\n<:space:874678195843125278><:yt:877869922053664799> ${config.PREFIX}dn\n\n<:i_:787598077875716096> **Info & Support Commands**:\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}invite\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}stats\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}report\n<:space:874678195843125278><:right:874690882417360986> ${config.PREFIX}support`);
 
     message.inlineReply(helpembed)
     client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'help triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
