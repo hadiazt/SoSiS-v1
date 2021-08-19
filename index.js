@@ -438,7 +438,7 @@ client.on("message", async message => {
 
   // ------------------------- YT DOWNLOAD -------------------------
 
-  if (message.content.startsWith(confid.PREFIX + "dn")) {
+  if (message.content.startsWith(config.PREFIX + "dn")) {
 
     let args = message.content.split(' ').slice(1);
 
