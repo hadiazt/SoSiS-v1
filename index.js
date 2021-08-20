@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 require("./ExtendedMessage");
 const client = new Discord.Client({ allowedMentions: { repliedUser: true } });
+const { DiscordMenus, ButtonBuilder, MenuBuilder } = require('discord-menus');
+const MenusManager = new DiscordMenus(client);
 const Canvas = require('canvas');
 Canvas.registerFont('./font/OpenSans-ExtraBoldItalic.ttf', { family: 'OpenSans-Regular' })
 const rga = require("random-gif-api")
@@ -23,6 +25,27 @@ var data = require('./data/msg.json')
 var game = require('./data/t&d.json');
 var config = require('./data/config.json')
 var photo = require('./data/pic.json')
+
+
+const myCoolMenu = new MenuBuilder()
+    .addLabel('Value 1', { description: 'This the value 1 description', value: 'value-1' })
+    .addLabel('Value 2', { description: 'This is the value 2 description', value: 'value-2' })
+    .addLabel('Value 3', {      description: 'This is the value 3 description (with an emoji)',value: 'value-3', emoji: {name: '🌌'}})
+    .setMinValues(1)
+    .setCustomID('cool-custom-id')
+    .setPlaceHolder('Select an option');
+
+client.on('message', async (message) => {
+    if (message.content === 'test') {
+        await MenusManager.sendMenu(message, 'content', { menu: myCoolMenu })
+    }
+});
+
+MenusManager.on('MENU_CLICKED', (menu) => {
+    menu.reply('some reply')
+    console.log(menu.values);
+});
+
 
 client.on('ready', () => {
 
