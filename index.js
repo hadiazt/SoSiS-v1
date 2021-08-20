@@ -442,7 +442,7 @@ client.on("message", async message => {
 
     let args = message.content.split(' ').slice(1);
 
-    if (!args[0]) return message.inlineReply(`⛔ | لطفا لینک یوتیوب را وارد کنید`);
+    if (!args[0]) return message.inlineReply('<:cross~1:853953928269660180> | لطفا لینک یوتیوب را وارد کنید');
 
     let infos;
     let stream;
@@ -451,18 +451,18 @@ client.on("message", async message => {
       stream = YTDL(args.join(" "), { encoderArgs: ['-af', 'dynaudnorm=f=200'], fmt: 'mp3', opusEncoded: false });
       infos = await ScrapeYt.search(args.join(" "));
     } catch (e) {
-      return message.inlineReply(`⛔ | چیزی برای لینک وارد شده یافت نشد`);
+      return message.inlineReply('<:cross~1:853953928269660180> | چیزی برای لینک وارد شده یافت نشد');
     }
 
     try {
-      message.inlineReply(`:notes: |  پس از اتمام دانلود فایل مورد نظر ارسال میشود`);
+      message.inlineReply('<:loading:878139499526381589> | پس از اتمام دانلود فایل مورد نظر ارسال میشود');
 
       stream.pipe(createWriteStream(__dirname + `/download/${message.author.id}.mp3`)).on('finish', () => {
 
         try {
-          message.inlineReply(`🎵 | آهنگ درخواستی شما ${infos[0].title} `, new Discord.MessageAttachment(__dirname + `/download/${message.author.id}.mp3`, `${message.author.id}.mp3`))
+          message.inlineReply(`<:tick:853953922426470400> | آهنگ درخواستی شما ${infos[0].title} `, new Discord.MessageAttachment(__dirname + `/download/${message.author.id}.mp3`, `${message.author.id}.mp3`))
         } catch (e) {
-          return message.inlineReply(`⛔ |به دو دلیل ارسال فایل امکان پذیر نیست
+          return message.inlineReply(`<:erorr:878139495764090880> | به دو دلیل ارسال فایل امکان پذیر نیست
 1) حجم فایل بیش از 8 مگابایت است 
 2) ربات دسترسی ارسال محتوا را در چنل/سرور ندارد
 `);
@@ -470,7 +470,7 @@ client.on("message", async message => {
 
       })
     } catch (e) {
-      return message.inlineReply(`⛔ | چیزی برای لینک وارد شده یافت نشد`);
+      return message.inlineReply('<:cross~1:853953928269660180> | چیزی برای لینک وارد شده یافت نشد');
     }
         client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'yt dn triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
    }
