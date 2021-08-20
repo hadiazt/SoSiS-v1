@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 require("./ExtendedMessage");
 const client = new Discord.Client({ allowedMentions: { repliedUser: true } });
+const { DiscordMenus, ButtonBuilder, MenuBuilder } = require('discord-menus');
+const MenusManager = new DiscordMenus(client);
 const Canvas = require('canvas');
 Canvas.registerFont('./font/OpenSans-ExtraBoldItalic.ttf', { family: 'OpenSans-Regular' })
 const rga = require("random-gif-api")
@@ -386,6 +388,24 @@ client.on("message", (message) => {
 
 
 client.on("message", async message => {
+
+  const profilemenu = new MenuBuilder()
+    .addLabel('Value 1', { description: 'This the value 1 description', value: 'value-1' })
+    .addLabel('Value 2', { description: 'This is the value 2 description', value: 'value-2' })
+    .addLabel('Value 3', { description: 'This is the value 3 description (with an emoji)', value: 'value-3', emoji: { name: '🌌' } })
+    .setMinValues(1)
+    .setPlaceHolder('Select an option');
+
+  client.on('message', async (message) => {
+    if (message.content === `${config.PREFIX}test`) {
+      await MenusManager.sendMenu(message, '<:sosishub:875793961980166174> لطفا مدل عکس/گیف را انتخاب کنید', { menu: profilemenu })
+    }
+  });
+
+  MenusManager.on('MENU_CLICKED', (menu) => {
+    menu.reply('some reply')
+    console.log(menu.values);
+  });
 
   // ------------------------- HELP -------------------------
   if (message.content === `${config.PREFIX}help`) {
