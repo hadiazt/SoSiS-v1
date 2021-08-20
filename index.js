@@ -36,8 +36,8 @@ const myCoolMenu = new MenuBuilder()
     .setPlaceHolder('Select an option');
 
 client.on('message', async (message) => {
-    if (message.content === 'test') {
-        await MenusManager.sendMenu(message, 'content', { menu: myCoolMenu })
+    if (message.content === config.PREFIX + 'test') {
+        await MenusManager.sendMenu(message, '<a:cameraa:875411271250481233>content', { menu: myCoolMenu })
     }
 });
 
