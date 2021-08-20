@@ -504,7 +504,7 @@ client.on("message", async message => {
   var rating = Math.floor(Math.random() * 100) + 1;
 
   // ------------------------- SIMP -------------------------
-  if (message.content === `${config.PREFIX} simp`) {
+  if (message.content === `${config.PREFIX}simp`) {
     var pic = data.simp.thumbnails[Math.floor(Math.random() * data.simp.thumbnails.length)];
     var simpmsg = new Discord.MessageEmbed()
       .setTitle(data.simp.title + rating + "/100 ")
@@ -515,7 +515,7 @@ client.on("message", async message => {
   }
 
   // ------------------------- JAZAB -------------------------
-  if (message.content === `${config.PREFIX} jazab`) {
+  if (message.content === `${config.PREFIX}jazab`) {
     var jazabmsg = new Discord.MessageEmbed()
       .setTitle(data.jazab.title + rating + "/100")
       .setColor(data.jazab.color)
@@ -531,7 +531,7 @@ client.on("message", async message => {
     if (!profileargs.length) {
       var profilehelp = new Discord.MessageEmbed()
         .setTitle(data.profile.helptitle)
-        .setDescription(`<a:cameraa:875411271250481233> ** Profile Commands:**\n <:space:874678195843125278><:e1:875415555841077268> ${config.PREFIX} profile egirl\n <:space:874678195843125278><:e2:875416681474850866> ${config.PREFIX} profile eboy\n <:space:874678195843125278> <a:couplee:875418191067775047> ${config.PREFIX} profile couple\n <:space:874678195843125278> <a:landscape:875418222558597230> ${config.PREFIX} profile landscape\n <:space:874678195843125278><:animee:875419748542869624> ${config.PREFIX} profile anime\n <:space:874678195843125278><a:boyy:875419154524569630> ${config.PREFIX} profile boy\n <:space:874678195843125278><a:girll:875420525751582781> ${config.PREFIX} profile girl\n <:space:874678195843125278><:animal:875420910776090675> ${config.PREFIX} profile animal`);
+        .setDescription(`<a:cameraa:875411271250481233> ** Profile Commands:**\n <:space:874678195843125278><:e1:875415555841077268> ${config.PREFIX}profile egirl\n <:space:874678195843125278><:e2:875416681474850866> ${config.PREFIX}profile eboy\n <:space:874678195843125278> <a:couplee:875418191067775047> ${config.PREFIX}profile couple\n <:space:874678195843125278> <a:landscape:875418222558597230> ${config.PREFIX}profile landscape\n <:space:874678195843125278><:animee:875419748542869624> ${config.PREFIX}profile anime\n <:space:874678195843125278><a:boyy:875419154524569630> ${config.PREFIX}profile boy\n <:space:874678195843125278><a:girll:875420525751582781> ${config.PREFIX}profile girl\n <:space:874678195843125278><:animal:875420910776090675> ${config.PREFIX}profile animal`);
       return message.inlineReply(profilehelp);
     }
     if (profileargs[0] === 'egirl') {
@@ -706,7 +706,7 @@ client.on("message", async message => {
 
 
   // ------------------------- CHISTAN -------------------------
-  if (message.content === `${config.PREFIX} chistan`) {
+  if (message.content === `${config.PREFIX}chistan`) {
     var soalq = game.chistan[Math.floor(Math.random() * game.chistan.length)];
 
     let chmsg = new Discord.MessageEmbed()
@@ -718,7 +718,7 @@ client.on("message", async message => {
   }
 
   // ------------------------- TRUTH -------------------------
-  if (message.content === `${config.PREFIX} truth`) {
+  if (message.content === `${config.PREFIX}truth`) {
     const truth = game.TRUTH[Math.floor(Math.random() * game.TRUTH.length)];
     let tmsg = new Discord.MessageEmbed()
       .setTitle(' 🟢 ' + truth + ' 🟢 ')
@@ -728,7 +728,7 @@ client.on("message", async message => {
   }
 
   // ------------------------- DARE -------------------------
-  if (message.content === `${config.PREFIX} dare`) {
+  if (message.content === `${config.PREFIX}dare`) {
     const dare = game.DARE[Math.floor(Math.random() * game.DARE.length)];
     let dmsg = new Discord.MessageEmbed()
       .setTitle(' 🔴 ' + dare + ' 🔴 ')
@@ -738,7 +738,7 @@ client.on("message", async message => {
   }
 
   // ------------------------- ROLL -------------------------
-  if (message.content === `${config.PREFIX} roll`) {
+  if (message.content === `${config.PREFIX}roll`) {
 
     message.inlineReply(rating)
 
