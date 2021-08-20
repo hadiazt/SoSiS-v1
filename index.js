@@ -26,7 +26,94 @@ var game = require('./data/t&d.json');
 var config = require('./data/config.json')
 var photo = require('./data/pic.json')
 
+// ------------------------- PROFILE -------------------------
 
+const profileMenu = new MenuBuilder()
+  .addLabel('E-GIRL', { value: 'E-GIRL', emoji: { name: 'e1', id: '875415555841077268' } })
+  .addLabel('E-BOY', { value: 'E-BOY', emoji: { name: 'e2', id: '875416681474850866' } })
+  .addLabel('COUPLE', { value: 'COUPLE', emoji: { name: 'couplee', id: '875418191067775047' } })
+  .addLabel('LANDSCAPE', { value: 'LANDSCAPE', emoji: { name: 'landscape', id: '875418222558597230' } })
+  .addLabel('ANIME', { value: 'ANIME', emoji: { name: 'animee', id: '875419748542869624' } })
+  .addLabel('BOY', { value: 'BOY', emoji: { name: 'boyy', id: '875419154524569630' } })
+  .addLabel('GIRL', { value: 'GIRL', emoji: { name: 'girll', id: '875420525751582781' } })
+  .addLabel('ANIMAL', { value: 'ANIMAL', emoji: { name: 'animal', id: '875420910776090675' } })
+  .setMaxValues(1)
+  .setCustomID('profile_menu')
+  .setPlaceHolder('برای مشاهده کلیک کنید');
+
+client.on('message', async (message) => {
+  if (message.content === config.PREFIX + 'profile') {
+    await MenusManager.sendMenu(message, '<a:cameraa:875411271250481233> لطفا نوع عکس/گیف خود را انتخاب کنید', { menu: profileMenu })
+    client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'profile triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
+  }
+});
+
+MenusManager.on('MENU_CLICKED', (menu) => {
+
+  if (menu.customID === 'profile_menu') {
+    if (menu.values[0] === 'E-GIRL') {
+      var egpic = photo.egirl[Math.floor(Math.random() * photo.egirl.length)];
+      var profilemsg = new Discord.MessageEmbed()
+        .setTitle('پروفایل درخواستی شما')
+        .setColor('GREEN')
+        .setImage(egpic)
+    }
+    if (menu.values[0] === 'E-BOY') {
+      var ebpic = photo.eboy[Math.floor(Math.random() * photo.eboy.length)];
+      var profilemsg = new Discord.MessageEmbed()
+        .setTitle('پروفایل درخواستی شما')
+        .setColor('GREEN')
+        .setImage(ebpic)
+    }
+    if (menu.values[0] === 'COUPLE') {
+      var couplepic = photo.couple[Math.floor(Math.random() * photo.couple.length)];
+      var profilemsg = new Discord.MessageEmbed()
+        .setTitle('پروفایل درخواستی شما')
+        .setColor('GREEN')
+        .setImage(couplepic)
+    }
+    if (menu.values[0] === 'LANDSCAPE') {
+      var lpic = photo.landscape[Math.floor(Math.random() * photo.landscape.length)];
+      var profilemsg = new Discord.MessageEmbed()
+        .setTitle('پروفایل درخواستی شما')
+        .setColor('GREEN')
+        .setImage(lpic)
+    }
+    if (menu.values[0] === 'ANIME') {
+      var animepic = photo.anime[Math.floor(Math.random() * photo.anime.length)];
+      var profilemsg = new Discord.MessageEmbed()
+        .setTitle('پروفایل درخواستی شما')
+        .setColor('GREEN')
+        .setImage(animepic)
+    }
+    if (menu.values[0] === 'BOY') {
+      var bpic = photo.boy[Math.floor(Math.random() * photo.boy.length)];
+      var profilemsg = new Discord.MessageEmbed()
+        .setTitle('پروفایل درخواستی شما')
+        .setColor('GREEN')
+        .setImage(bpic)
+    }
+    if (menu.values[0] === 'GIRL') {
+      var gpic = photo.girl[Math.floor(Math.random() * photo.girl.length)];
+      var profilemsg = new Discord.MessageEmbed()
+        .setTitle('پروفایل درخواستی شما')
+        .setColor('GREEN')
+        .setImage(gpic)
+    }
+    if (menu.values[0] === 'ANIMAL') {
+      var apic = photo.animal[Math.floor(Math.random() * photo.animal.length)];
+      var profilemsg = new Discord.MessageEmbed()
+        .setTitle('پروفایل درخواستی شما')
+        .setColor('GREEN')
+        .setImage(apic)
+    }
+    menu.reply(profilemsg)
+
+  }
+
+});
+
+// -------------------------  -------------------------
 
 client.on('ready', () => {
 
@@ -527,29 +614,6 @@ client.on("message", async message => {
     client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'jazab triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
   }
 
-  // ------------------------- PROFILE -------------------------
-
-  const profileMenu = new MenuBuilder()
-  .addLabel('E-GIRL', { value: 'E-GIRL', emoji: { name: 'e1', id: '875415555841077268' } })
-  .addLabel('E-BOY', { value: 'E-BOY', emoji: { name: 'e2', id: '875416681474850866' } })
-  .addLabel('COUPLE', { value: 'COUPLE', emoji: { name: 'couplee', id: '875418191067775047' } })
-  .addLabel('LANDSCAPE', { value: 'LANDSCAPE', emoji: { name: 'landscape', id: '875418222558597230' } })
-  .addLabel('ANIME', { value: 'ANIME', emoji: { name: 'animee', id: '875419748542869624' } })
-  .addLabel('BOY', { value: 'BOY', emoji: { name: 'boyy', id: '875419154524569630' } })
-  .addLabel('GIRL', { value: 'GIRL', emoji: { name: 'girll', id: '875420525751582781' } })
-  .addLabel('ANIMAL', { value: 'ANIMAL', emoji: { name: 'animal', id: '875420910776090675' } })
-  .setMaxValues(1)
-  .setCustomID('profile_menu')
-  .setPlaceHolder('برای مشاهده کلیک کنید');
-
-client.on('message', async (message) => {
-  if (message.content === config.PREFIX + 'profile') {
-    await MenusManager.sendMenu(message, '<a:cameraa:875411271250481233> لطفا نوع عکس/گیف خود را انتخاب کنید', { menu: profileMenu })
-    client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'profile triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
-  }
-});
-
-
   // ------------------------- LOVE -------------------------
 
   if (message.content.startsWith(config.PREFIX + "love")) {
@@ -793,72 +857,6 @@ client.on('message', async (message) => {
 
 client.on('error', (err) => {
   client.channels.cache.get(config.ACTION_LOG).send('<@&873573543705739284> / <@&873573484465360936>\n```\n' + err + '\n```');
-});
-
-
-MenusManager.on('MENU_CLICKED', (menu) => {
-
-  if (menu.customID === 'profile_menu') {
-    if (menu.values[0] === 'E-GIRL') {
-      var egpic = photo.egirl[Math.floor(Math.random() * photo.egirl.length)];
-      var profilemsg = new Discord.MessageEmbed()
-        .setTitle('پروفایل درخواستی شما')
-        .setColor('GREEN')
-        .setImage(egpic)
-    }
-    if (menu.values[0] === 'E-BOY') {
-      var ebpic = photo.eboy[Math.floor(Math.random() * photo.eboy.length)];
-      var profilemsg = new Discord.MessageEmbed()
-        .setTitle('پروفایل درخواستی شما')
-        .setColor('GREEN')
-        .setImage(ebpic)
-    }
-    if (menu.values[0] === 'COUPLE') {
-      var couplepic = photo.couple[Math.floor(Math.random() * photo.couple.length)];
-      var profilemsg = new Discord.MessageEmbed()
-        .setTitle('پروفایل درخواستی شما')
-        .setColor('GREEN')
-        .setImage(couplepic)
-    }
-    if (menu.values[0] === 'LANDSCAPE') {
-      var lpic = photo.landscape[Math.floor(Math.random() * photo.landscape.length)];
-      var profilemsg = new Discord.MessageEmbed()
-        .setTitle('پروفایل درخواستی شما')
-        .setColor('GREEN')
-        .setImage(lpic)
-    }
-    if (menu.values[0] === 'ANIME') {
-      var animepic = photo.anime[Math.floor(Math.random() * photo.anime.length)];
-      var profilemsg = new Discord.MessageEmbed()
-        .setTitle('پروفایل درخواستی شما')
-        .setColor('GREEN')
-        .setImage(animepic)
-    }
-    if (menu.values[0] === 'BOY') {
-      var bpic = photo.boy[Math.floor(Math.random() * photo.boy.length)];
-      var profilemsg = new Discord.MessageEmbed()
-        .setTitle('پروفایل درخواستی شما')
-        .setColor('GREEN')
-        .setImage(bpic)
-    }
-    if (menu.values[0] === 'GIRL') {
-      var gpic = photo.girl[Math.floor(Math.random() * photo.girl.length)];
-      var profilemsg = new Discord.MessageEmbed()
-        .setTitle('پروفایل درخواستی شما')
-        .setColor('GREEN')
-        .setImage(gpic)
-    }
-    if (menu.values[0] === 'ANIMAL') {
-      var apic = photo.animal[Math.floor(Math.random() * photo.animal.length)];
-      var profilemsg = new Discord.MessageEmbed()
-        .setTitle('پروفایل درخواستی شما')
-        .setColor('GREEN')
-        .setImage(apic)
-    }
-    menu.reply(profilemsg)
-
-  }
-
 });
 
 let token = 'ODE5ODgzMDc4OTM0NTkzNTQ2.YEtFng.6TWWsJGEjLAj7b1bdduToWGklsM'
