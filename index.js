@@ -81,10 +81,10 @@ MenusManager.on('MENU_CLICKED', async (menu) => {
     if (menu.values[0] === 'HENTAI') {
       async function hentai() {
         var x = await nekos.nsfw.hentai()
-        var nsfwmsg = new Discord.MessageEmbed()
+        var msg = new Discord.MessageEmbed()
           .setTitle('Random Hentai')
           .setImage(x.url)
-        menu.reply(nsfwmsg, { ephemeral: true })
+        menu.reply(msg, { ephemeral: true })
       }
       hentai()
     }
@@ -94,7 +94,7 @@ MenusManager.on('MENU_CLICKED', async (menu) => {
         var msg = new Discord.MessageEmbed()
           .setTitle('Random Neko')
           .setImage(x.url)
-        message.inlineReply(msg)
+        menu.reply(msg, { ephemeral: true })
       }
       neko()
     }
@@ -104,7 +104,7 @@ MenusManager.on('MENU_CLICKED', async (menu) => {
         var msg = new Discord.MessageEmbed()
           .setTitle('Random Lesbian')
           .setImage(x.url)
-        message.inlineReply(msg)
+        menu.reply(msg, { ephemeral: true })
       }
       lesbian()
     }
@@ -114,7 +114,7 @@ MenusManager.on('MENU_CLICKED', async (menu) => {
         var msg = new Discord.MessageEmbed()
           .setTitle('Random Cumsluts')
           .setImage(x.url)
-        message.inlineReply(msg)
+        menu.reply(msg, { ephemeral: true })
       }
       cumsluts()
     }
@@ -124,7 +124,7 @@ MenusManager.on('MENU_CLICKED', async (menu) => {
         var msg = new Discord.MessageEmbed()
           .setTitle('Random Boobs')
           .setImage(x.url)
-        message.inlineReply(msg)
+        menu.reply(msg, { ephemeral: true })
       }
       boobs()
     }
@@ -134,7 +134,7 @@ MenusManager.on('MENU_CLICKED', async (menu) => {
         var msg = new Discord.MessageEmbed()
           .setTitle('Random Anal')
           .setImage(x.url)
-        message.inlineReply(msg)
+        menu.reply(msg, { ephemeral: true })
       }
       anal()
     }
@@ -144,7 +144,7 @@ MenusManager.on('MENU_CLICKED', async (menu) => {
         var msg = new Discord.MessageEmbed()
           .setTitle('Random Tits')
           .setImage(x.url)
-        message.inlineReply(msg)
+        menu.reply(msg, { ephemeral: true })
       }
       tits()
     }
@@ -154,7 +154,7 @@ MenusManager.on('MENU_CLICKED', async (menu) => {
         var msg = new Discord.MessageEmbed()
           .setTitle('Random Trap')
           .setImage(x.url)
-        message.inlineReply(msg)
+        menu.reply(msg, { ephemeral: true })
       }
       trap()
     }
@@ -164,7 +164,7 @@ MenusManager.on('MENU_CLICKED', async (menu) => {
         var msg = new Discord.MessageEmbed()
           .setTitle('Random GirlSolo')
           .setImage(x.url)
-        message.inlineReply(msg)
+        menu.reply(msg, { ephemeral: true })
       }
       girlSolo()
     }
@@ -174,17 +174,17 @@ MenusManager.on('MENU_CLICKED', async (menu) => {
         var msg = new Discord.MessageEmbed()
           .setTitle('Random Feet')
           .setImage(x.url)
-        message.inlineReply(msg)
+        menu.reply(msg, { ephemeral: true })
       }
       feet()
     }
-    if(menu.values[0] === 'FEETGIF'){
+    if (menu.values[0] === 'FEETGIF') {
       async function feetGif() {
         var x = await nekos.nsfw.feetGif()
         var msg = new Discord.MessageEmbed()
           .setTitle('Random FeetGif')
           .setImage(x.url)
-        message.inlineReply(msg)
+        menu.reply(msg, { ephemeral: true })
       }
       feetGif()
     }
@@ -194,7 +194,7 @@ MenusManager.on('MENU_CLICKED', async (menu) => {
         var msg = new Discord.MessageEmbed()
           .setTitle('Random EroFeet')
           .setImage(x.url)
-        message.inlineReply(msg)
+        menu.reply(msg, { ephemeral: true })
       }
       eroFeet()
     }
@@ -204,7 +204,7 @@ MenusManager.on('MENU_CLICKED', async (menu) => {
         var msg = new Discord.MessageEmbed()
           .setTitle('Random BlowJob')
           .setImage(x.url)
-        message.inlineReply(msg)
+        menu.reply(msg, { ephemeral: true })
       }
       blowJob()
     }
