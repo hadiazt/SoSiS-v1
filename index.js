@@ -41,15 +41,89 @@ const profileMenu = new MenuBuilder()
   .setCustomID('profile_menu')
   .setPlaceHolder('برای مشاهده کلیک کنید');
 
+const nsfwMenu = new MenuBuilder()
+  .addLabel('HENTAI', { value: 'HENTAI', emoji: { name: 'Hentai', id: '875708876765425685' } })
+  .addLabel('NEKO', { value: 'NEKO', emoji: { name: 'neko', id: '875708740395991041' } })
+  .addLabel('LESBIAN', { value: 'LESBIAN', emoji: { name: 'lesbian', id: '875709227849625610' } })
+  .addLabel('CUMSLUTS', { value: 'CUMSLUTS', emoji: { name: 'cumsluts', id: '875712333115170867' } })
+  .addLabel('CLASSIC', { value: 'CLASSIC', emoji: { name: 'classic', id: '875718983544881174' } })
+  .addLabel('BOOBS', { value: 'BOOBS', emoji: { name: 'boobs', id: '875720764106620999' } })
+  .addLabel('ANAL', { value: 'ANAL', emoji: { name: 'analll', id: '875724354510532609' } })
+  .addLabel('TITS', { value: 'TITS', emoji: { name: 'titss', id: '875745746543054909' } })
+  .addLabel('TRAP', { value: 'TRAP', emoji: { name: 'trap', id: '875747569509208104' } })
+  .addLabel('GIRL SOLO', { value: 'GIRL-SOLO', emoji: { name: 'girlsolo', id: '875748714025721876' } })
+  .addLabel('FEET', { value: 'FEET', emoji: { name: 'feettt', id: '875749858143789177' } })
+  .addLabel('EROFEET', { value: 'EROFEET', emoji: { name: 'erofeet', id: '875750351922405417' } })
+  .addLabel('BLOWJOB', { value: 'BLOWJOB', emoji: { name: 'blowjob', id: '875754750111547422' } })
+  .setMaxValues(1)
+  .setCustomID('nsfw_menu')
+  .setPlaceHolder('برای مشاهده کلیک کنید');
+
 client.on('message', async (message) => {
   if (message.content === config.PREFIX + 'profile') {
     await MenusManager.sendMenu(message, '<a:cameraa:875411271250481233> لطفا نوع عکس/گیف خود را انتخاب کنید', { menu: profileMenu })
     client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'profile triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
   }
+  if (message.content === config.PREFIX + 'nsfw') {
+    if (!message.channel.nsfw) {
+      return message.inlineReply('این دستور تنها در چنل nsfw فعال است')
+    }
+    await MenusManager.sendMenu(message, '<:sosishub:875793961980166174> لطفا نوع عکس/گیف خود را انتخاب کنید', { menu: nsfwMenu })
+    client.channels.cache.get(config.ACTION_LOG).send('```\n' + 'nsfw triggerd in ' + message.guild.name + ' server | by ' + message.author.username + ' | in ' + message.channel.name + '\n```');
+  }
 });
 
-MenusManager.on('MENU_CLICKED', (menu) => {
+MenusManager.on('MENU_CLICKED', async (menu) => {
+  if (menu.customID === 'nsfw_menu') {
+    if (menu.values[0] === 'HENTAI') {
+      async function hentai() {
+        var x = await nekos.nsfw.hentai()
+        var nsfwmsg = new Discord.MessageEmbed()
+          .setTitle('Random Hentai')
+          .setImage(x.url)
+        menu.reply(nsfwmsg, { ephemeral: true })
 
+      }
+      hentai()
+    }
+    if (menu.values[0] === 'NEKO') {
+
+    }
+    if (menu.values[0] === 'LESBIAN') {
+
+    }
+    if (menu.values[0] === 'CUMSLUTS') {
+
+    }
+    if (menu.values[0] === 'CLASSIC') {
+
+    }
+    if (menu.values[0] === 'BOOBS') {
+
+    }
+    if (menu.values[0] === 'ANAL') {
+
+    }
+    if (menu.values[0] === 'TITS') {
+
+    }
+    if (menu.values[0] === 'TRAP') {
+
+    }
+    if (menu.values[0] === 'GIRL-SOLO') {
+
+    }
+    if (menu.values[0] === 'FEET') {
+
+    }
+    if (menu.values[0] === 'EROFEET') {
+
+    }
+    if (menu.values[0] === 'BLOWJOB') {
+
+    }
+
+  }
   if (menu.customID === 'profile_menu') {
     if (menu.values[0] === 'E-GIRL') {
       var egpic = photo.egirl[Math.floor(Math.random() * photo.egirl.length)];
@@ -107,7 +181,7 @@ MenusManager.on('MENU_CLICKED', (menu) => {
         .setColor('GREEN')
         .setImage(apic)
     }
-    menu.reply(profilemsg,{ephemeral: true})
+    menu.reply(profilemsg, { ephemeral: true })
 
   }
 
@@ -116,9 +190,6 @@ MenusManager.on('MENU_CLICKED', (menu) => {
 // -------------------------  -------------------------
 
 client.on('ready', () => {
-
-
-
   console.log(`Logged in as ${client.user.tag}!`);
   client.user.setPresence({
     status: config.Presence.status,
@@ -330,7 +401,7 @@ client.on("message", (message) => {
     if (nsfwargs[0] === 'hentai') {
       async function hentai() {
         var x = await nekos.nsfw.hentai()
-        var msg = new Discord.MessageEmbed()
+        var nsfwmsg = new Discord.MessageEmbed()
           .setTitle('Random Hentai')
           .setImage(x.url)
         message.inlineReply(msg)
