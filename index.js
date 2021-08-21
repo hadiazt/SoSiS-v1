@@ -107,7 +107,7 @@ MenusManager.on('MENU_CLICKED', (menu) => {
         .setColor('GREEN')
         .setImage(apic)
     }
-    menu.reply(profilemsg)
+    menu.reply(profilemsg,{ephemeral: true})
 
   }
 
