@@ -24,11 +24,11 @@
         "color": "#c41a1a"
     },
     "inv": {
-        "link": "https://discord.com/api/oauth2/authorize?client_id=762378493929455617&permissions=137439861953&scope=bot",
+        "link": "https://discord.com/api/oauth2/authorize?client_id=762378493929455617&permissions=137439861953&scope=bot%20applications.commands",
         "title": "برای دعوت من کلیک کنید"
     },
     "sup": {
-        "link": "https://discord.gg/6WtJZAWEfR",
+        "link": "https://discord.gg/6vhPVYkNU9",
         "title": "برای پیوستن به سرور پشتیبانی کلیک کنید"
     },
     "stats": {
