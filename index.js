@@ -614,8 +614,8 @@ client.on("message", async message => {
   if (message.content.startsWith(config.PREFIX + "love")) {
     const user = message.mentions.users.first();
 
-    if (!message.mentions.members.first()) return message.inlineReply(data.love.errors.mention).then(message.react('❌'));
     if (user.id === message.author.id) return message.inlineReply(data.love.errors.yourself)
+    if (!message.mentions.members.first()) var user = message.guild.members.cache.random().user;
 
     if (lovedb.has(message.author.id + '.' + user.id)) {
 
